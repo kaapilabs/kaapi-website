@@ -1,281 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaapi Labs — India's First Protein Coffee</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --cream: #F5EBE0;
-            --espresso: #2C1810;
-            --brown: #5C3D2E;
-            --gold: #C6993E;
-            --muted: #8B7D75;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body {
-            height: 100%;
-            font-family: 'Inter', -apple-system, sans-serif;
-            overflow-x: hidden;
-        }
-        body {
-            display: flex;
-            flex-direction: column;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kaapi Labs — India's First Protein Coffee</title>
+  <meta name="description" content="Kaapi Labs reimagines your daily kaapi with protein-rich, estate-origin coffee from the Western Ghats of Karnataka. Coming soon — join the waitlist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5EBE0;
+      --bg: #fbf5ea;
+      --bg-2: #f2e7d4;
+      --paper: #fffaf2;
+      --espresso: #2C1810;
+      --text: #3e2615;
+      --muted: rgba(62, 38, 21, 0.72);
+      --line: rgba(62, 38, 21, 0.12);
+      --gold: #C6993E;
+      --gold-deep: #9b671f;
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --shadow: 0 18px 45px rgba(77, 47, 20, 0.12);
+      --radius: 22px;
+    }
 
-        /* ===== CREAM SECTION ===== */
-        .cream-section {
-            background: var(--cream);
-            padding: 16px 50px 12px;
-            flex-shrink: 0;
-        }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255,255,255,0.65), transparent 30%),
+        radial-gradient(circle at top right, rgba(198,153,62,0.06), transparent 24%),
+        var(--bg);
+      line-height: 1.5;
+    }
 
-        /* Logo centered */
-        .logo-row {
-            text-align: center;
-            margin-bottom: 5px;
-        }
-        .logo {
-            width: 150px;
-            height: auto;
-        }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; }
+    .container {
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+    }
 
-        /* Headline + idea left aligned below logo */
-        .text-block {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .headline {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-            font-weight: 600;
-            color: var(--espresso);
-            line-height: 1.25;
-            text-align: left;
-            margin-bottom: 6px;
-            white-space: nowrap;
-        }
-        .headline em {
-            color: var(--gold);
-            font-style: normal;
-        }
+    /* ===== HEADER / NAV ===== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      background: rgba(251,245,234,0.85);
+      border-bottom: 1px solid var(--line);
+    }
 
-        /* Idea section */
-        .idea-stat {
-            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-            color: var(--muted);
-            font-weight: 300;
-            line-height: 1.5;
-            text-align: left;
-        }
-        .idea-stat strong {
-            color: var(--gold);
-            font-weight: 600;
-        }
-        .idea-story {
-            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
-            color: var(--muted);
-            font-weight: 300;
-            line-height: 1.5;
-            margin-top: 4px;
-            text-align: left;
-        }
-        .idea-story .kaapi {
-            color: var(--gold);
-            font-weight: 700;
-        }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 82px;
+    }
 
-        /* ===== GRADIENT ===== */
-        .gradient-transition {
-            height: 100px;
-            background: linear-gradient(
-                to bottom,
-                var(--cream) 0%,
-                rgba(245,235,224,0.9) 12%,
-                rgba(245,235,224,0.75) 25%,
-                rgba(245,235,224,0.55) 38%,
-                rgba(245,235,224,0.38) 50%,
-                rgba(245,235,224,0.2) 62%,
-                rgba(245,235,224,0.08) 78%,
-                transparent 100%
-            );
-            position: relative;
-            z-index: 2;
-            margin-bottom: -100px;
-            flex-shrink: 0;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      min-width: 180px;
+    }
 
-        /* ===== ESTATE PHOTO ===== */
-        .estate-section {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 110px 50px 30px;
-            position: relative;
-            background: var(--espresso);
-            background-image: url('estate.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .estate-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(
-                to bottom,
-                rgba(44,24,16,0.35) 0%,
-                rgba(44,24,16,0.55) 50%,
-                rgba(44,24,16,0.8) 100%
-            );
-            z-index: 1;
-        }
-        .split-content {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            width: 100%;
-            max-width: 1100px;
-            gap: 50px;
-        }
-        .left-side { flex: 1; }
-        .coming-soon {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.5rem, 6vw, 4.2rem);
-            font-weight: 700;
-            color: #FFFFFF;
-            line-height: 1.1;
-            white-space: nowrap;
-        }
-        .location-tag {
-            margin-top: 12px;
-            font-size: 0.72rem;
-            color: rgba(255,255,255,0.85);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 300;
-        }
-        .right-side {
-            flex: 1;
-            max-width: 380px;
-        }
-        .estate-description {
-            font-size: 0.92rem;
-            font-weight: 300;
-            color: rgba(245,235,224,0.8);
-            line-height: 1.75;
-            margin-bottom: 24px;
-        }
-        .form-label {
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--gold);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .form-note {
-            margin-top: 8px;
-            font-size: 0.65rem;
-            color: rgba(245,235,224,0.22);
-            font-weight: 300;
-        }
+    .brand img {
+      width: 56px;
+      height: 56px;
+      object-fit: contain;
+      border-radius: 50%;
+    }
 
-        /* ===== FOOTER ===== */
-        .footer {
-            padding: 14px 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            background: var(--espresso);
-            border-top: 1px solid rgba(245,235,224,0.06);
-            flex-shrink: 0;
-        }
-        .social-icons {
-            display: flex;
-            gap: 12px;
-        }
-        .social-icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            border: 1px solid rgba(245,235,224,0.12);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-        .social-icons a:hover {
-            border-color: var(--gold);
-            background: rgba(198,153,62,0.1);
-        }
-        .social-icons a svg {
-            width: 13px;
-            height: 13px;
-            fill: rgba(245,235,224,0.4);
-            transition: fill 0.3s ease;
-        }
-        .social-icons a:hover svg { fill: var(--gold); }
+    .brand-name {
+      font-size: 1.28rem;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+      font-weight: 500;
+    }
 
-        /* ===== MOBILE ===== */
-        @media (max-width: 768px) {
-            .cream-section { padding: 18px 20px 22px; }
-            .logo { width: 100px; }
-            .text-block { margin-top: 16px; }
-            .headline { white-space: normal; }
-            .gradient-transition { height: 70px; margin-bottom: -70px; }
-            .estate-section { padding: 80px 20px 25px; }
-            .split-content { flex-direction: column; gap: 25px; }
-            .coming-soon { font-size: 2.2rem; white-space: normal; }
-            .right-side { max-width: 100%; }
-        }
-    </style>
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.95rem;
+      color: rgba(62, 38, 21, 0.82);
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold-deep); }
+
+    .btn-nav {
+      padding: 12px 18px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      color: white !important;
+      border-radius: 10px;
+      box-shadow: 0 10px 24px rgba(155,103,31,0.2);
+      font-weight: 600;
+    }
+
+    main section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding-top: 64px;
+      padding-bottom: 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--gold-deep);
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3 {
+      font-family: var(--serif);
+      font-weight: 500;
+      margin: 0;
+      color: var(--espresso);
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      font-size: 1.08rem;
+      max-width: 640px;
+      color: var(--muted);
+      margin: 28px 0 0;
+      font-weight: 300;
+    }
+
+    .hero p.lead strong { color: var(--gold-deep); font-weight: 600; }
+
+    .manifesto {
+      margin-top: 26px;
+      padding-left: 18px;
+      border-left: 2px solid var(--gold);
+      font-family: var(--serif);
+      color: var(--gold-deep);
+      font-size: 1.5rem;
+      line-height: 1.34;
+      max-width: 650px;
+    }
+
+    .manifesto .kaapi { font-weight: 700; }
+
+    .actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
+      box-shadow: 0 10px 24px rgba(155,103,31,0.2);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(62, 38, 21, 0.28);
+      color: var(--text);
+      background: transparent;
+    }
+
+    .microcopy {
+      margin-top: 18px;
+      color: rgba(62,38,21,0.58);
+      font-size: 0.88rem;
+      font-weight: 300;
+    }
+
+    .hero-card {
+      background: rgba(255,250,242,0.82);
+      border: 1px solid rgba(198,153,62,0.18);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      border-radius: 18px;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* ===== BENEFITS STRIP ===== */
+    .benefits {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid rgba(198,153,62,0.22);
+      background: rgba(255,250,242,0.92);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(77, 47, 20, 0.06);
+      overflow: hidden;
+    }
+
+    .benefit {
+      padding: 26px 28px;
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 16px;
+      align-items: center;
+      border-right: 1px solid rgba(198,153,62,0.18);
+    }
+
+    .benefit:last-child { border-right: 0; }
+
+    .benefit-icon {
+      width: 54px;
+      height: 54px;
+      border: 1px solid rgba(198,153,62,0.4);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold-deep);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .benefit-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: var(--gold-deep);
+      fill: none;
+      stroke-width: 1.5;
+    }
+
+    .benefit h3 { font-size: 1.15rem; }
+
+    .benefit p {
+      margin: 4px 0 0;
+      font-size: 0.9rem;
+      color: rgba(62,38,21,0.62);
+      font-weight: 300;
+    }
+
+    /* ===== SPLIT SECTIONS ===== */
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .section-title {
+      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+      line-height: 1.06;
+      letter-spacing: -0.02em;
+    }
+
+    .section-copy {
+      margin-top: 22px;
+      max-width: 620px;
+      font-size: 1.02rem;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .media-card {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: var(--paper);
+      border: 1px solid rgba(62,38,21,0.08);
+    }
+
+    .media-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .landscape-img { aspect-ratio: 16 / 9; }
+
+    .origin {
+      background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.18)), var(--paper);
+      border-top: 1px solid rgba(62,38,21,0.06);
+      border-bottom: 1px solid rgba(62,38,21,0.06);
+    }
+
+    .origin-img { aspect-ratio: 4 / 3; }
+
+    /* ===== WAITLIST ===== */
+    .waitlist {
+      text-align: center;
+      background:
+        radial-gradient(circle at top center, rgba(198,153,62,0.08), transparent 25%),
+        var(--bg-2);
+      padding-top: 92px;
+      padding-bottom: 92px;
+    }
+
+    .waitlist h2 {
+      font-size: clamp(2.5rem, 4.7vw, 4.2rem);
+      line-height: 1.05;
+    }
+
+    .waitlist > .container > p {
+      margin: 16px auto 28px;
+      max-width: 620px;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .waitlist .eyebrow { justify-content: center; }
+    .waitlist .eyebrow::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .form-wrap {
+      width: min(660px, 100%);
+      margin: 0 auto;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 32px 0;
+      border-top: 1px solid var(--line);
+      background: #f1e5d3;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(62,38,21,0.2);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      border-color: var(--gold-deep);
+      background: rgba(198,153,62,0.12);
+    }
+
+    .social-icons a svg {
+      width: 14px;
+      height: 14px;
+      fill: rgba(62,38,21,0.6);
+      transition: fill 0.3s ease;
+    }
+
+    .social-icons a:hover svg { fill: var(--gold-deep); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: rgba(62,38,21,0.76);
+      font-size: 0.92rem;
+    }
+
+    .footer-links a:hover { color: var(--gold-deep); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .hero-grid,
+      .split { grid-template-columns: 1fr; gap: 34px; }
+      .benefits { grid-template-columns: 1fr; }
+      .benefit {
+        border-right: 0;
+        border-bottom: 1px solid rgba(198,153,62,0.16);
+      }
+      .benefit:last-child { border-bottom: 0; }
+      .nav-links a:not(.btn-nav) { display: none; }
+      /* keep image above text in Origin on mobile order handled below */
+      .origin .split .media-card { order: -1; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 24px, 1180px); }
+      .brand-name { display: none; }
+      .hero { padding-top: 42px; }
+      h1 { font-size: 2.9rem; }
+      .manifesto { font-size: 1.2rem; }
+      main section { padding: 64px 0; }
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <div class="cream-section">
-        <div class="logo-row">
-            <img src="logo.png" alt="Kaapi Labs" class="logo">
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand" aria-label="Kaapi Labs home">
+          <img src="logo.png" alt="Kaapi Labs logo" />
+          <span class="brand-name">kaapi labs</span>
+        </a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#why">Why Kaapi</a>
+          <a href="#product">Product</a>
+          <a href="#waitlist">Waitlist</a>
+          <a href="#waitlist" class="btn-nav">Join Waitlist</a>
         </div>
-        <div class="text-block">
-            <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
-            <p class="idea-stat">Nearly <strong>3 in 4</strong> Indians may not get enough protein. Coffee is already part of the morning ritual. What if one cup could do both?</p>
-            <p class="idea-story">We didn't create another protein shake. We reimagined your daily <span class="kaapi">kaapi</span>.</p>
-        </div>
+      </nav>
     </div>
+  </header>
 
-    <div class="gradient-transition"></div>
+  <main id="top">
 
-    <section class="estate-section">
-        <div class="split-content">
-            <div class="left-side">
-                <h2 class="coming-soon">COMING SOON</h2>
-                <p class="location-tag">Sakleshpur · Chikmagalur</p>
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="eyebrow">Protein coffee, reimagined</div>
+            <h1>Your daily kaapi.<br>Now with protein.</h1>
+            <p class="lead">
+              Nearly <strong>3 in 4</strong> Indians may not get enough protein. Coffee is already part of the
+              morning ritual. What if one cup could do both?
+            </p>
+            <div class="manifesto">
+              We didn't create another protein shake.<br>
+              We reimagined your daily <span class="kaapi">kaapi</span>.
             </div>
-            <div class="right-side">
-                <p class="estate-description">Estate-origin coffee from the Western Ghats of Karnataka. 100% vegetarian. Works hot and cold.</p>
-                <label class="form-label">Join the waitlist</label>
-                <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
-                <p class="form-note">No spam. Just one email when we launch.</p>
+            <div class="actions">
+              <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
+              <a href="#why" class="btn btn-secondary">Learn more</a>
             </div>
+            <div class="microcopy">✉&nbsp; No spam. Just one email when we launch.</div>
+          </div>
+
+          <div class="hero-card reveal" id="product">
+            <img src="product.jpg" alt="Kaapi Labs Protein Kaapi pouch beside a South Indian filter coffee tumbler and dabarah" />
+          </div>
         </div>
+
+        <div class="benefits reveal">
+          <div class="benefit">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 21c4-3 7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 3 8 7 11z"/><path d="M12 21V10"/><path d="M12 13c1.5-.5 2.5-1.5 3-3"/><path d="M12 16c-1.5-.5-2.5-1.5-3-3"/></svg>
+            </div>
+            <div>
+              <h3>Protein-rich</h3>
+              <p>A smarter morning cup.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 17l5-8 4 6 3-4 6 6"/><path d="M3 17h18"/></svg>
+            </div>
+            <div>
+              <h3>Estate-origin coffee</h3>
+              <p>Sourced from the Western Ghats.</p>
+            </div>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 10h12v6a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-6z"/><path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 7c0-1 .8-1.2.8-2.2M12 7c0-1 .8-1.2.8-2.2"/></svg>
+            </div>
+            <div>
+              <h3>Made for hot kaapi</h3>
+              <p>Also works beautifully cold.</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <footer class="footer">
-        <div class="social-icons">
-            <a href="https://instagram.com/kaapilabs" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="https://youtube.com/@kaapilabs" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-            <a href="https://facebook.com/kaapilabs" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="mailto:hello@kaapilabs.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <!-- ===== WHY ===== -->
+    <section id="why">
+      <div class="container split">
+        <div class="reveal">
+          <div class="eyebrow">Why Kaapi Labs</div>
+          <h2 class="section-title">Not another shake.<br>A ritual, upgraded.</h2>
+          <p class="section-copy">
+            We're building a better way to add protein to your day — by starting with a ritual millions already love.
+            Kaapi Labs brings together estate-origin coffee, a familiar daily habit, and a more functional morning cup.
+          </p>
         </div>
-    </footer>
+        <div class="media-card landscape-img reveal">
+          <img src="estate-mist.jpg" alt="Misty coffee estate in the Western Ghats with coffee cherries in the foreground" loading="lazy" />
+        </div>
+      </div>
+    </section>
 
+    <!-- ===== ORIGIN ===== -->
+    <section class="origin" id="about">
+      <div class="container split">
+        <div class="media-card origin-img reveal">
+          <img src="estate-house.jpg" alt="Coffee plantation with a rustic estate house and pathway in golden morning light" loading="lazy" />
+        </div>
+        <div class="reveal">
+          <div class="eyebrow">Origin</div>
+          <h2 class="section-title">Sakleshpur · Chikmagalur</h2>
+          <p class="section-copy">
+            Estate-origin coffee from the Western Ghats of Karnataka. Crafted for everyday drinkers who want more
+            from their morning cup. 100% vegetarian.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WAITLIST ===== -->
+    <section class="waitlist" id="waitlist">
+      <div class="container reveal">
+        <div class="eyebrow">Coming soon</div>
+        <h2>Be first to taste Kaapi Labs.</h2>
+        <p>Join the waitlist for launch updates and early access.</p>
+        <div class="form-wrap">
+          <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
+        </div>
+        <div class="microcopy">No spam. Just one email when we launch.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a href="#top" class="brand" aria-label="Kaapi Labs home">
+        <img src="logo.png" alt="Kaapi Labs logo" />
+        <span class="brand-name">kaapi labs</span>
+      </a>
+      <div class="footer-links">
+        <div class="social-icons">
+          <a href="https://instagram.com/kaapilabs" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+          <a href="https://youtube.com/@kaapilabs" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://facebook.com/kaapilabs" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="mailto:hello@kaapilabs.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+        </div>
+        <a href="mailto:hello@kaapilabs.com">Contact</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
