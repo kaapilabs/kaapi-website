@@ -31,16 +31,21 @@
             padding: 24px 50px 28px;
             flex-shrink: 0;
         }
-        .top-row {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            margin-bottom: 18px;
+
+        /* Logo centered */
+        .logo-row {
+            text-align: center;
+            margin-bottom: 20px;
         }
         .logo {
             width: 150px;
             height: auto;
-            flex-shrink: 0;
+        }
+
+        /* Headline + idea left aligned below logo */
+        .text-block {
+            max-width: 750px;
+            margin: 0 auto;
         }
         .headline {
             font-family: 'Playfair Display', Georgia, serif;
@@ -48,6 +53,8 @@
             font-weight: 600;
             color: var(--espresso);
             line-height: 1.25;
+            text-align: left;
+            margin-bottom: 10px;
         }
         .headline em {
             color: var(--gold);
@@ -55,15 +62,12 @@
         }
 
         /* Idea section */
-        .idea-section {
-            padding-left: 180px;
-        }
         .idea-stat {
             font-size: clamp(0.85rem, 1.6vw, 0.95rem);
             color: var(--muted);
             font-weight: 300;
             line-height: 1.5;
-            white-space: nowrap;
+            text-align: left;
         }
         .idea-stat strong {
             color: var(--gold);
@@ -75,6 +79,7 @@
             font-weight: 300;
             line-height: 1.5;
             margin-top: 4px;
+            text-align: left;
         }
         .idea-story .kaapi {
             color: var(--gold);
@@ -221,10 +226,8 @@
         /* ===== MOBILE ===== */
         @media (max-width: 768px) {
             .cream-section { padding: 18px 20px 22px; }
-            .top-row { gap: 16px; }
             .logo { width: 100px; }
-            .idea-section { padding-left: 0; margin-top: 10px; }
-            .idea-stat { white-space: normal; }
+            .text-block { margin-top: 16px; }
             .gradient-transition { height: 100px; margin-bottom: -100px; }
             .estate-section { padding: 120px 20px 25px; }
             .split-content { flex-direction: column; gap: 25px; }
@@ -236,11 +239,11 @@
 <body>
 
     <div class="cream-section">
-        <div class="top-row">
+        <div class="logo-row">
             <img src="logo.png" alt="Kaapi Labs" class="logo">
-            <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
         </div>
-        <div class="idea-section">
+        <div class="text-block">
+            <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
             <p class="idea-stat">Nearly <strong>3 in 4</strong> Indians may not get enough protein. Coffee is already part of the morning ritual. What if one cup could do both?</p>
             <p class="idea-story">We didn't create another protein shake. We reimagined your daily <span class="kaapi">kaapi</span>.</p>
         </div>
