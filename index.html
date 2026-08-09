@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaapi Labs — India's First Protein Filter Coffee</title>
-    <meta name="description" content="What if your morning filter coffee had protein? Estate-origin coffee from the Western Ghats. 100% vegetarian. Join the waitlist.">
+    <title>Kaapi Labs — India's First Protein Coffee</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
@@ -15,74 +14,74 @@
             --gold: #C6993E;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
+        html, body {
+            height: 100%;
             font-family: 'Inter', -apple-system, sans-serif;
             overflow-x: hidden;
-            min-height: 100vh;
+        }
+        body {
             display: flex;
             flex-direction: column;
         }
 
-        /* ===== TOP: Logo + Headline centered on cream ===== */
-        .top-section {
+        /* ===== TOP BAR: logo LEFT + headline RIGHT, same line ===== */
+        .top-bar {
             background: var(--cream);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 30px 24px 35px;
-            text-align: center;
+            padding: 18px 40px;
+            gap: 25px;
+            flex-shrink: 0;
         }
         .logo {
-            width: 120px;
+            width: 70px;
             height: auto;
-            margin-bottom: 18px;
+            flex-shrink: 0;
         }
         .headline {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(1.6rem, 4vw, 2.4rem);
+            font-size: clamp(1.3rem, 3vw, 2rem);
             font-weight: 600;
             color: var(--espresso);
             line-height: 1.3;
-            max-width: 600px;
         }
         .headline em {
             color: var(--gold);
             font-style: italic;
         }
 
-        /* ===== SMOOTH GRADIENT ===== */
+        /* ===== GRADIENT ===== */
         .gradient-transition {
-            height: 180px;
+            height: 150px;
             background: linear-gradient(
                 to bottom,
                 var(--cream) 0%,
-                rgba(245, 235, 224, 0.92) 12%,
-                rgba(245, 235, 224, 0.78) 25%,
-                rgba(245, 235, 224, 0.6) 38%,
-                rgba(245, 235, 224, 0.42) 50%,
-                rgba(245, 235, 224, 0.25) 62%,
-                rgba(245, 235, 224, 0.12) 75%,
-                rgba(245, 235, 224, 0.04) 88%,
+                rgba(245,235,224,0.9) 12%,
+                rgba(245,235,224,0.75) 25%,
+                rgba(245,235,224,0.55) 38%,
+                rgba(245,235,224,0.38) 50%,
+                rgba(245,235,224,0.2) 62%,
+                rgba(245,235,224,0.08) 78%,
                 transparent 100%
             );
             position: relative;
             z-index: 2;
-            margin-bottom: -180px;
+            margin-bottom: -150px;
+            flex-shrink: 0;
         }
 
-        /* ===== ESTATE PHOTO SECTION ===== */
+        /* ===== ESTATE PHOTO ===== */
         .estate-section {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 200px 50px 50px;
+            padding: 170px 50px 30px;
             position: relative;
             background: var(--espresso);
             background-image: url('estate.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
         }
         .estate-section::before {
             content: '';
@@ -90,14 +89,12 @@
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(44, 24, 16, 0.35) 0%,
-                rgba(44, 24, 16, 0.55) 50%,
-                rgba(44, 24, 16, 0.8) 100%
+                rgba(44,24,16,0.35) 0%,
+                rgba(44,24,16,0.55) 50%,
+                rgba(44,24,16,0.8) 100%
             );
             z-index: 1;
         }
-
-        /* ===== SPLIT CONTENT ===== */
         .split-content {
             position: relative;
             z-index: 2;
@@ -113,17 +110,16 @@
         .left-side { flex: 1; }
         .coming-soon {
             font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4.2rem);
             font-weight: 700;
             color: #FFFFFF;
             line-height: 1.1;
-            letter-spacing: -1px;
             white-space: nowrap;
         }
         .location-tag {
-            margin-top: 14px;
+            margin-top: 12px;
             font-size: 0.72rem;
-            color: rgba(255, 255, 255, 0.28);
+            color: rgba(255,255,255,0.28);
             letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 300;
@@ -132,14 +128,14 @@
         /* RIGHT */
         .right-side {
             flex: 1;
-            max-width: 400px;
+            max-width: 380px;
         }
         .estate-description {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             font-weight: 300;
-            color: rgba(245, 235, 224, 0.8);
+            color: rgba(245,235,224,0.8);
             line-height: 1.75;
-            margin-bottom: 28px;
+            margin-bottom: 24px;
         }
         .form-label {
             font-size: 0.72rem;
@@ -151,77 +147,72 @@
             display: block;
         }
         .form-note {
-            margin-top: 10px;
-            font-size: 0.68rem;
-            color: rgba(245, 235, 224, 0.25);
+            margin-top: 8px;
+            font-size: 0.65rem;
+            color: rgba(245,235,224,0.22);
             font-weight: 300;
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 18px 24px;
+            padding: 14px 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
+            gap: 16px;
             background: var(--espresso);
-            border-top: 1px solid rgba(245, 235, 224, 0.06);
+            border-top: 1px solid rgba(245,235,224,0.06);
+            flex-shrink: 0;
         }
         .social-icons {
             display: flex;
-            gap: 14px;
-            align-items: center;
+            gap: 12px;
         }
         .social-icons a {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 34px;
-            height: 34px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            border: 1px solid rgba(245, 235, 224, 0.12);
+            border: 1px solid rgba(245,235,224,0.12);
             transition: all 0.3s ease;
             text-decoration: none;
         }
         .social-icons a:hover {
             border-color: var(--gold);
-            background: rgba(198, 153, 62, 0.1);
+            background: rgba(198,153,62,0.1);
         }
         .social-icons a svg {
-            width: 14px;
-            height: 14px;
-            fill: rgba(245, 235, 224, 0.4);
+            width: 13px;
+            height: 13px;
+            fill: rgba(245,235,224,0.4);
             transition: fill 0.3s ease;
         }
         .social-icons a:hover svg { fill: var(--gold); }
 
         /* ===== MOBILE ===== */
         @media (max-width: 768px) {
-            .top-section { padding: 24px 20px 28px; }
-            .logo { width: 100px; margin-bottom: 14px; }
-            .gradient-transition { height: 120px; margin-bottom: -120px; }
-            .estate-section { padding: 140px 24px 40px; }
-            .split-content { flex-direction: column; gap: 30px; }
-            .coming-soon {
-                font-size: 2.5rem;
-                white-space: normal;
-            }
+            .top-bar { padding: 14px 20px; gap: 15px; }
+            .logo { width: 55px; }
+            .headline { font-size: 1.15rem; }
+            .gradient-transition { height: 100px; margin-bottom: -100px; }
+            .estate-section { padding: 120px 20px 25px; }
+            .split-content { flex-direction: column; gap: 25px; }
+            .coming-soon { font-size: 2.2rem; white-space: normal; }
             .right-side { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP: Logo + Headline centered on cream -->
-    <section class="top-section">
+    <div class="top-bar">
         <img src="logo.png" alt="Kaapi Labs" class="logo">
-        <h1 class="headline">What if your morning filter coffee had <em>protein?</em></h1>
-    </section>
+        <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
+    </div>
 
-    <!-- SMOOTH GRADIENT -->
     <div class="gradient-transition"></div>
 
-    <!-- ESTATE PHOTO: Split layout -->
     <section class="estate-section">
         <div class="split-content">
             <div class="left-side">
@@ -237,21 +228,12 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="social-icons">
-            <a href="https://instagram.com/kaapilabs" target="_blank" aria-label="Instagram">
-                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-            </a>
-            <a href="https://youtube.com/@kaapilabs" target="_blank" aria-label="YouTube">
-                <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-            </a>
-            <a href="https://facebook.com/kaapilabs" target="_blank" aria-label="Facebook">
-                <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-            </a>
-            <a href="mailto:hello@kaapilabs.com" aria-label="Email">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-            </a>
+            <a href="https://instagram.com/kaapilabs" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://youtube.com/@kaapilabs" target="_blank" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="https://facebook.com/kaapilabs" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="mailto:hello@kaapilabs.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
         </div>
     </footer>
 
