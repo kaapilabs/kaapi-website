@@ -25,19 +25,17 @@
             flex-direction: column;
         }
 
-        /* ===== CREAM SECTION: Logo + Headline + Idea ===== */
+        /* ===== CREAM SECTION ===== */
         .cream-section {
             background: var(--cream);
-            padding: 24px 50px 30px;
+            padding: 24px 50px 28px;
             flex-shrink: 0;
         }
-
-        /* Logo LEFT + Headline RIGHT — same line */
         .top-row {
             display: flex;
             align-items: center;
             gap: 30px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
         .logo {
             width: 110px;
@@ -56,14 +54,28 @@
             font-style: italic;
         }
 
-        /* The Idea — below headline, still on cream */
-        .idea {
-            font-size: clamp(0.88rem, 1.8vw, 1rem);
+        /* Idea section */
+        .idea-section {
+            padding-left: 140px;
+        }
+        .idea-stat {
+            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
             color: var(--muted);
             font-weight: 300;
-            line-height: 1.6;
-            max-width: 650px;
-            padding-left: 140px;
+            line-height: 1.5;
+            white-space: nowrap;
+        }
+        .idea-stat strong {
+            color: var(--espresso);
+            font-weight: 600;
+        }
+        .idea-story {
+            font-size: clamp(0.82rem, 1.5vw, 0.9rem);
+            color: var(--muted);
+            font-weight: 300;
+            line-height: 1.5;
+            margin-top: 4px;
+            font-style: italic;
         }
 
         /* ===== GRADIENT ===== */
@@ -111,8 +123,6 @@
             );
             z-index: 1;
         }
-
-        /* ===== SPLIT CONTENT ===== */
         .split-content {
             position: relative;
             z-index: 2;
@@ -210,8 +220,8 @@
             .cream-section { padding: 18px 20px 22px; }
             .top-row { gap: 16px; }
             .logo { width: 80px; }
-            .headline { font-size: 1.3rem; }
-            .idea { padding-left: 0; margin-top: 10px; font-size: 0.85rem; }
+            .idea-section { padding-left: 0; margin-top: 10px; }
+            .idea-stat { white-space: normal; }
             .gradient-transition { height: 100px; margin-bottom: -100px; }
             .estate-section { padding: 120px 20px 25px; }
             .split-content { flex-direction: column; gap: 25px; }
@@ -222,19 +232,19 @@
 </head>
 <body>
 
-    <!-- CREAM: Logo + Headline + Idea -->
     <div class="cream-section">
         <div class="top-row">
             <img src="logo.png" alt="Kaapi Labs" class="logo">
             <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
         </div>
-        <p class="idea">73% of Indians are protein deficient. But 100 million drink filter coffee every morning. We didn't invent a protein shake. We upgraded India's most loved daily ritual.</p>
+        <div class="idea-section">
+            <p class="idea-stat"><strong>73%</strong> of Indians are protein deficient. But <strong>100 million</strong> drink filter coffee every morning.</p>
+            <p class="idea-story">We didn't invent a protein shake. We upgraded India's most loved daily ritual.</p>
+        </div>
     </div>
 
-    <!-- GRADIENT -->
     <div class="gradient-transition"></div>
 
-    <!-- ESTATE PHOTO -->
     <section class="estate-section">
         <div class="split-content">
             <div class="left-side">
@@ -244,13 +254,12 @@
             <div class="right-side">
                 <p class="estate-description">Estate-origin coffee from the Western Ghats of Karnataka. 100% vegetarian. Works hot and cold.</p>
                 <label class="form-label">Join the waitlist</label>
-                <script async src="https://eocampaign1.com/form/8258530a-939b-11f1-88f6-e9bf8e9e9083.js" data-form="8258530a-939b-11f1-88f6-e9bf8e9e9083"></script>
+                <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
                 <p class="form-note">No spam. Just one email when we launch.</p>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="social-icons">
             <a href="https://instagram.com/kaapilabs" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
