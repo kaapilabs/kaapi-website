@@ -38,7 +38,7 @@
             margin-bottom: 18px;
         }
         .logo {
-            width: 110px;
+            width: 150px;
             height: auto;
             flex-shrink: 0;
         }
@@ -51,12 +51,12 @@
         }
         .headline em {
             color: var(--gold);
-            font-style: italic;
+            font-style: normal;
         }
 
         /* Idea section */
         .idea-section {
-            padding-left: 140px;
+            padding-left: 180px;
         }
         .idea-stat {
             font-size: clamp(0.85rem, 1.6vw, 0.95rem);
@@ -66,16 +66,19 @@
             white-space: nowrap;
         }
         .idea-stat strong {
-            color: var(--espresso);
+            color: var(--gold);
             font-weight: 600;
         }
         .idea-story {
-            font-size: clamp(0.82rem, 1.5vw, 0.9rem);
+            font-size: clamp(0.85rem, 1.6vw, 0.95rem);
             color: var(--muted);
             font-weight: 300;
             line-height: 1.5;
             margin-top: 4px;
-            font-style: italic;
+        }
+        .idea-story .kaapi {
+            color: var(--gold);
+            font-weight: 700;
         }
 
         /* ===== GRADIENT ===== */
@@ -145,7 +148,7 @@
         .location-tag {
             margin-top: 12px;
             font-size: 0.72rem;
-            color: rgba(255,255,255,0.28);
+            color: rgba(255,255,255,0.85);
             letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 300;
@@ -219,7 +222,7 @@
         @media (max-width: 768px) {
             .cream-section { padding: 18px 20px 22px; }
             .top-row { gap: 16px; }
-            .logo { width: 80px; }
+            .logo { width: 100px; }
             .idea-section { padding-left: 0; margin-top: 10px; }
             .idea-stat { white-space: normal; }
             .gradient-transition { height: 100px; margin-bottom: -100px; }
@@ -238,8 +241,8 @@
             <h1 class="headline">What if your morning hot coffee had <em>protein?</em></h1>
         </div>
         <div class="idea-section">
-            <p class="idea-stat"><strong>73%</strong> of Indians are protein deficient. But <strong>100 million</strong> drink filter coffee every morning.</p>
-            <p class="idea-story">We didn't invent a protein shake. We upgraded India's most loved daily ritual.</p>
+            <p class="idea-stat">Nearly <strong>3 in 4</strong> Indians may not get enough protein. Coffee is already part of the morning ritual. What if one cup could do both?</p>
+            <p class="idea-story">We didn't create another protein shake. We reimagined your daily <span class="kaapi">kaapi</span>.</p>
         </div>
     </div>
 
