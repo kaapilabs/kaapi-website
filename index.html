@@ -3,278 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kaapi Labs — Something is Brewing</title>
-    <meta name="description" content="India's first protein hot coffee. From our estate to your family's cup. Coming soon.">
+    <title>Kaapi Labs — India's First Protein Filter Coffee</title>
+    <meta name="description" content="What if your morning filter coffee had protein? Estate-origin coffee from the Western Ghats. 100% vegetarian. Join the waitlist.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --cream: #F5EBE0;
+            --espresso: #2C1810;
+            --brown: #5C3D2E;
+            --gold: #C6993E;
+            --muted: #8B7D75;
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        /* ===== HERO WITH BACKGROUND ===== */
+        .hero {
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            background: #2C1810;
-            font-family: 'Playfair Display', Georgia, serif;
-            color: #F7F3EF;
-            overflow: hidden;
-        }
-
-        .container {
             text-align: center;
-            padding: 20px;
+            padding: 50px 24px;
             position: relative;
+
+            /* BACKGROUND IMAGE — replace 'estate.jpg' with your actual estate photo */
+            background: var(--espresso);
+            background-image: url('estate.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
 
-        /* ===== COFFEE CUP SVG ===== */
-        .coffee-wrapper {
-            margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .coffee-cup {
-            width: 180px;
-            height: auto;
-            filter: drop-shadow(0 5px 25px rgba(198, 124, 78, 0.15));
-        }
-
-        /* ===== STEAM ANIMATION ===== */
-        .steam-container {
+        /* Dark overlay so text stays readable over any photo */
+        .hero::before {
+            content: '';
             position: absolute;
-            top: -60px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 80px;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(44, 24, 16, 0.75) 0%,
+                rgba(44, 24, 16, 0.6) 50%,
+                rgba(44, 24, 16, 0.8) 100%
+            );
             z-index: 1;
         }
 
-        .steam {
-            position: absolute;
-            bottom: 0;
-            width: 6px;
-            border-radius: 50%;
-            background: rgba(198, 124, 78, 0.25);
-            filter: blur(4px);
-            animation: steamRise 3s ease-out infinite;
-            opacity: 0;
+        .hero > * {
+            position: relative;
+            z-index: 2;
         }
 
-        .steam:nth-child(1) {
-            left: 20px;
-            animation-delay: 0s;
-            height: 30px;
-        }
-        .steam:nth-child(2) {
-            left: 35px;
-            animation-delay: 0.4s;
-            height: 40px;
-            width: 7px;
-        }
-        .steam:nth-child(3) {
-            left: 50px;
-            animation-delay: 0.8s;
-            height: 35px;
-        }
-        .steam:nth-child(4) {
-            left: 65px;
-            animation-delay: 1.2s;
-            height: 45px;
-            width: 8px;
-        }
-        .steam:nth-child(5) {
-            left: 45px;
-            animation-delay: 1.6s;
-            height: 32px;
-            width: 5px;
-        }
-        .steam:nth-child(6) {
-            left: 30px;
-            animation-delay: 2.0s;
-            height: 38px;
-        }
-        .steam:nth-child(7) {
-            left: 55px;
-            animation-delay: 0.6s;
-            height: 28px;
-            width: 5px;
-        }
-        .steam:nth-child(8) {
-            left: 40px;
-            animation-delay: 1.8s;
-            height: 42px;
-            width: 7px;
+        /* ===== LOGO ===== */
+        .logo {
+            width: 160px;
+            height: auto;
+            margin-bottom: 50px;
+            animation: fadeIn 1.2s ease-out;
+            filter: brightness(1.1);
         }
 
-        @keyframes steamRise {
-            0% {
-                transform: translateY(0) scaleX(1);
-                opacity: 0;
-            }
-            15% {
-                opacity: 0.4;
-            }
-            50% {
-                transform: translateY(-40px) scaleX(1.5) translateX(5px);
-                opacity: 0.25;
-            }
-            80% {
-                transform: translateY(-70px) scaleX(2) translateX(-3px);
-                opacity: 0.1;
-            }
-            100% {
-                transform: translateY(-100px) scaleX(2.5) translateX(8px);
-                opacity: 0;
-            }
+        /* ===== HEADLINE ===== */
+        .headline {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 600;
+            color: var(--cream);
+            line-height: 1.25;
+            max-width: 750px;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .headline em {
+            color: var(--gold);
+            font-style: italic;
         }
 
-        /* ===== GLOW BEHIND CUP ===== */
-        .glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(198, 124, 78, 0.08) 0%, transparent 70%);
-            pointer-events: none;
-            animation: glowPulse 4s ease-in-out infinite;
+        /* ===== SUBTITLE ===== */
+        .subheadline {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-weight: 300;
+            color: rgba(245, 235, 224, 0.7);
+            max-width: 500px;
+            line-height: 1.7;
+            margin-bottom: 50px;
+            animation: fadeInUp 1s ease-out 0.4s both;
         }
 
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+        /* ===== EMAIL FORM ===== */
+        .form-wrapper {
+            width: 100%;
+            max-width: 440px;
+            animation: fadeInUp 1s ease-out 0.6s both;
         }
-
-        /* ===== TEXT ===== */
-        h1 {
-            color: #C67C4E;
-            font-size: 2.8em;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 12px;
-            animation: fadeInUp 1.5s ease-out 0.3s both;
-        }
-
-        .tagline {
-            color: #8B7D75;
-            font-size: 1.2em;
-            font-weight: 400;
-            margin-bottom: 8px;
-            animation: fadeInUp 1.5s ease-out 0.6s both;
-        }
-
-        .sub {
-            color: #5C3D2E;
-            font-size: 0.85em;
-            font-weight: 400;
+        .form-label {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--gold);
             letter-spacing: 3px;
             text-transform: uppercase;
-            font-family: Arial, sans-serif;
-            margin-top: 25px;
-            animation: fadeInUp 1.5s ease-out 0.9s both;
+            margin-bottom: 14px;
+            display: block;
+        }
+        .form-note {
+            margin-top: 14px;
+            font-size: 0.73rem;
+            color: rgba(245, 235, 224, 0.4);
+            font-weight: 300;
         }
 
-        /* ===== FLOATING COFFEE BEANS ===== */
-        .bean {
-            position: fixed;
-            opacity: 0.06;
-            animation: floatBean 15s ease-in-out infinite;
-        }
-        .bean:nth-child(1) { top: 10%; left: 8%; animation-delay: 0s; }
-        .bean:nth-child(2) { top: 20%; right: 12%; animation-delay: 3s; }
-        .bean:nth-child(3) { bottom: 15%; left: 15%; animation-delay: 6s; }
-        .bean:nth-child(4) { bottom: 25%; right: 8%; animation-delay: 9s; }
-        .bean:nth-child(5) { top: 50%; left: 5%; animation-delay: 2s; }
-        .bean:nth-child(6) { top: 40%; right: 6%; animation-delay: 7s; }
-
-        @keyframes floatBean {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(15deg); }
+        /* ===== BOTTOM TAG ===== */
+        .estate-tag {
+            margin-top: 60px;
+            font-size: 0.78rem;
+            color: rgba(245, 235, 224, 0.35);
+            font-weight: 300;
+            letter-spacing: 2px;
+            animation: fadeInUp 1s ease-out 1s both;
         }
 
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 24px;
+            text-align: center;
+            background: var(--espresso);
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            justify-content: center;
+        }
+        .footer-links a {
+            font-size: 0.75rem;
+            color: rgba(245, 235, 224, 0.4);
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover { color: var(--gold); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ===== RESPONSIVE ===== */
         @media (max-width: 600px) {
-            h1 { font-size: 2em; }
-            .tagline { font-size: 1em; }
-            .coffee-cup { width: 140px; }
-            .steam-container { top: -45px; width: 80px; }
+            .logo { width: 130px; margin-bottom: 36px; }
+            .headline { margin-bottom: 16px; }
+            .subheadline { margin-bottom: 36px; }
+            .estate-tag { margin-top: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Floating coffee beans background -->
-    <svg class="bean" width="40" height="55" viewBox="0 0 40 55"><ellipse cx="20" cy="28" rx="18" ry="25" fill="#5C3D2E"/><ellipse cx="22" cy="27" rx="2.5" ry="16" fill="#2C1810"/></svg>
-    <svg class="bean" width="35" height="48" viewBox="0 0 35 48"><ellipse cx="17" cy="24" rx="15" ry="22" fill="#C67C4E"/><ellipse cx="19" cy="23" rx="2" ry="14" fill="#8B5E3C"/></svg>
-    <svg class="bean" width="30" height="42" viewBox="0 0 30 42"><ellipse cx="15" cy="21" rx="13" ry="19" fill="#5C3D2E"/><ellipse cx="17" cy="20" rx="2" ry="12" fill="#2C1810"/></svg>
-    <svg class="bean" width="38" height="52" viewBox="0 0 38 52"><ellipse cx="19" cy="26" rx="17" ry="24" fill="#C67C4E"/><ellipse cx="21" cy="25" rx="2.5" ry="15" fill="#8B5E3C"/></svg>
-    <svg class="bean" width="25" height="35" viewBox="0 0 25 35"><ellipse cx="12" cy="18" rx="11" ry="16" fill="#5C3D2E"/><ellipse cx="14" cy="17" rx="1.5" ry="10" fill="#2C1810"/></svg>
-    <svg class="bean" width="32" height="44" viewBox="0 0 32 44"><ellipse cx="16" cy="22" rx="14" ry="20" fill="#C67C4E"/><ellipse cx="18" cy="21" rx="2" ry="13" fill="#8B5E3C"/></svg>
-
-    <div class="container">
-        <!-- Coffee cup with steam -->
-        <div class="coffee-wrapper">
-            <div class="glow"></div>
-            <div class="steam-container">
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-                <div class="steam"></div>
-            </div>
-            <svg class="coffee-cup" viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-                <!-- Saucer -->
-                <ellipse cx="100" cy="200" rx="85" ry="14" fill="#5C3D2E"/>
-                <ellipse cx="100" cy="197" rx="80" ry="12" fill="#6B4A38"/>
-                <ellipse cx="100" cy="195" rx="75" ry="10" fill="#7A5A45"/>
-
-                <!-- Cup body -->
-                <path d="M45 85 L50 180 Q50 195 100 195 Q150 195 150 180 L155 85" fill="#8B6F5E"/>
-                <path d="M48 85 L52 178 Q52 192 100 192 Q148 192 148 178 L152 85" fill="#A08070"/>
-
-                <!-- Coffee liquid inside -->
-                <ellipse cx="100" cy="95" rx="50" ry="12" fill="#1A0E08"/>
-
-                <!-- Cup rim -->
-                <ellipse cx="100" cy="85" rx="55" ry="13" fill="#A08070"/>
-                <ellipse cx="100" cy="85" rx="55" ry="13" fill="none" stroke="#8B6F5E" stroke-width="1.5"/>
-                <ellipse cx="100" cy="83" rx="52" ry="11" fill="#B89880"/>
-
-                <!-- Coffee surface shimmer -->
-                <ellipse cx="90" cy="93" rx="20" ry="5" fill="#2C1810" opacity="0.4"/>
-                <ellipse cx="110" cy="95" rx="12" ry="3" fill="#3D2A1E" opacity="0.3"/>
-
-                <!-- Cup handle -->
-                <path d="M155 100 Q182 100 182 130 Q182 160 155 160" fill="none" stroke="#A08070" stroke-width="8" stroke-linecap="round"/>
-                <path d="M155 105 Q177 105 177 130 Q177 155 155 155" fill="none" stroke="#B89880" stroke-width="4" stroke-linecap="round"/>
-
-                <!-- Subtle cup highlight -->
-                <path d="M60 95 L63 170" stroke="#B89880" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
-            </svg>
+    <section class="hero">
+        <img src="logo.png" alt="Kaapi Labs" class="logo">
+        <h1 class="headline">What if your morning filter coffee had <em>protein?</em></h1>
+        <p class="subheadline">Estate-origin coffee from the Western Ghats of Karnataka. 100% vegetarian. Works hot and cold. Coming soon.</p>
+        <div class="form-wrapper">
+            <label class="form-label">Join the waitlist</label>
+            <script async src="https://eocampaign1.com/form/8258530a-939b-11f1-88f6-e9bf8e9e9083.js" data-form="8258530a-939b-11f1-88f6-e9bf8e9e9083"></script>
+            <p class="form-note">No spam. Just one email when we launch.</p>
         </div>
+        <p class="estate-tag">Sakleshpur · Chikmagalur · Karnataka</p>
+    </section>
 
-        <!-- Text -->
-        <h1>Something is brewing...</h1>
-        <p class="tagline">India's first protein hot coffee. Coming soon.</p>
-        <p class="sub">Kaapi Labs</p>
-    </div>
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://instagram.com/kaapilabs" target="_blank">Instagram</a>
+            <a href="mailto:hello@kaapilabs.com">Contact</a>
+        </div>
+    </footer>
 
 </body>
 </html>
