@@ -18,22 +18,50 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, sans-serif;
-            color: var(--cream);
             overflow-x: hidden;
         }
 
-        /* ===== HERO WITH BACKGROUND ===== */
+        /* ===== TOP: LOGO SECTION (cream background) ===== */
+        .logo-section {
+            background: var(--cream);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px 40px;
+            text-align: center;
+        }
+        .logo {
+            width: 180px;
+            height: auto;
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        /* ===== TRANSITION: cream fading into estate photo ===== */
+        .transition-zone {
+            height: 120px;
+            background: linear-gradient(
+                to bottom,
+                var(--cream) 0%,
+                rgba(245, 235, 224, 0.8) 30%,
+                rgba(245, 235, 224, 0.3) 60%,
+                transparent 100%
+            );
+            position: relative;
+            z-index: 2;
+            margin-bottom: -120px;
+        }
+
+        /* ===== BOTTOM: ESTATE PHOTO + CONTENT ===== */
         .hero {
-            min-height: 100vh;
+            min-height: 80vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 50px 24px;
+            padding: 140px 24px 60px;
             position: relative;
-
-            /* BACKGROUND IMAGE — replace 'estate.jpg' with your actual estate photo */
             background: var(--espresso);
             background-image: url('estate.jpg');
             background-size: cover;
@@ -41,32 +69,22 @@
             background-repeat: no-repeat;
         }
 
-        /* Dark overlay so text stays readable over any photo */
+        /* Dark overlay for readability */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(44, 24, 16, 0.75) 0%,
-                rgba(44, 24, 16, 0.6) 50%,
+                rgba(44, 24, 16, 0.5) 0%,
+                rgba(44, 24, 16, 0.65) 40%,
                 rgba(44, 24, 16, 0.8) 100%
             );
             z-index: 1;
         }
-
         .hero > * {
             position: relative;
             z-index: 2;
-        }
-
-        /* ===== LOGO ===== */
-        .logo {
-            width: 160px;
-            height: auto;
-            margin-bottom: 50px;
-            animation: fadeIn 1.2s ease-out;
-            filter: brightness(1.1);
         }
 
         /* ===== HEADLINE ===== */
@@ -78,7 +96,7 @@
             line-height: 1.25;
             max-width: 750px;
             margin-bottom: 20px;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            animation: fadeInUp 1s ease-out 0.3s both;
         }
         .headline em {
             color: var(--gold);
@@ -87,20 +105,20 @@
 
         /* ===== SUBTITLE ===== */
         .subheadline {
-            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            font-size: clamp(1rem, 2.5vw, 1.15rem);
             font-weight: 300;
             color: rgba(245, 235, 224, 0.7);
-            max-width: 500px;
+            max-width: 480px;
             line-height: 1.7;
-            margin-bottom: 50px;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            margin-bottom: 45px;
+            animation: fadeInUp 1s ease-out 0.5s both;
         }
 
         /* ===== EMAIL FORM ===== */
         .form-wrapper {
             width: 100%;
             max-width: 440px;
-            animation: fadeInUp 1s ease-out 0.6s both;
+            animation: fadeInUp 1s ease-out 0.7s both;
         }
         .form-label {
             font-size: 0.8rem;
@@ -114,15 +132,15 @@
         .form-note {
             margin-top: 14px;
             font-size: 0.73rem;
-            color: rgba(245, 235, 224, 0.4);
+            color: rgba(245, 235, 224, 0.35);
             font-weight: 300;
         }
 
-        /* ===== BOTTOM TAG ===== */
+        /* ===== ESTATE TAG ===== */
         .estate-tag {
-            margin-top: 60px;
+            margin-top: 50px;
             font-size: 0.78rem;
-            color: rgba(245, 235, 224, 0.35);
+            color: rgba(245, 235, 224, 0.3);
             font-weight: 300;
             letter-spacing: 2px;
             animation: fadeInUp 1s ease-out 1s both;
@@ -130,7 +148,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 24px;
+            padding: 20px 24px;
             text-align: center;
             background: var(--espresso);
         }
@@ -140,8 +158,8 @@
             justify-content: center;
         }
         .footer-links a {
-            font-size: 0.75rem;
-            color: rgba(245, 235, 224, 0.4);
+            font-size: 0.73rem;
+            color: rgba(245, 235, 224, 0.35);
             text-decoration: none;
             font-weight: 300;
             letter-spacing: 1px;
@@ -159,17 +177,26 @@
         }
 
         @media (max-width: 600px) {
-            .logo { width: 130px; margin-bottom: 36px; }
-            .headline { margin-bottom: 16px; }
-            .subheadline { margin-bottom: 36px; }
-            .estate-tag { margin-top: 40px; }
+            .logo { width: 140px; }
+            .logo-section { padding: 40px 24px 30px; }
+            .transition-zone { height: 80px; margin-bottom: -80px; }
+            .hero { padding: 100px 24px 50px; }
+            .estate-tag { margin-top: 35px; }
         }
     </style>
 </head>
 <body>
 
-    <section class="hero">
+    <!-- TOP: Logo on cream (matches logo background perfectly) -->
+    <section class="logo-section">
         <img src="logo.png" alt="Kaapi Labs" class="logo">
+    </section>
+
+    <!-- TRANSITION: cream melts into the estate photo -->
+    <div class="transition-zone"></div>
+
+    <!-- BOTTOM: Estate photo with headline + form -->
+    <section class="hero">
         <h1 class="headline">What if your morning filter coffee had <em>protein?</em></h1>
         <p class="subheadline">Estate-origin coffee from the Western Ghats of Karnataka. 100% vegetarian. Works hot and cold. Coming soon.</p>
         <div class="form-wrapper">
