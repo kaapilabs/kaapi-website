@@ -21,46 +21,58 @@
             overflow-x: hidden;
         }
 
-        /* ===== TOP: LOGO SECTION (cream background) ===== */
-        .logo-section {
+        /* ===== TOP: CREAM SECTION ===== */
+        .cream-section {
             background: var(--cream);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 60px 24px 40px;
+            padding: 50px 24px 60px;
             text-align: center;
         }
         .logo {
-            width: 180px;
+            width: 170px;
             height: auto;
+            margin-bottom: 40px;
             animation: fadeIn 1.2s ease-out;
         }
+        .headline {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(2rem, 5.5vw, 3.5rem);
+            font-weight: 600;
+            color: var(--espresso);
+            line-height: 1.25;
+            max-width: 700px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        .headline em {
+            color: var(--gold);
+            font-style: italic;
+        }
 
-        /* ===== TRANSITION: cream fading into estate photo ===== */
+        /* ===== TRANSITION ===== */
         .transition-zone {
-            height: 120px;
+            height: 100px;
             background: linear-gradient(
                 to bottom,
                 var(--cream) 0%,
-                rgba(245, 235, 224, 0.8) 30%,
-                rgba(245, 235, 224, 0.3) 60%,
+                rgba(245, 235, 224, 0.6) 40%,
+                rgba(245, 235, 224, 0.15) 70%,
                 transparent 100%
             );
             position: relative;
             z-index: 2;
-            margin-bottom: -120px;
+            margin-bottom: -100px;
         }
 
-        /* ===== BOTTOM: ESTATE PHOTO + CONTENT ===== */
-        .hero {
-            min-height: 80vh;
+        /* ===== ESTATE PHOTO SECTION ===== */
+        .estate-section {
+            min-height: 70vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            text-align: center;
-            padding: 140px 24px 60px;
+            padding: 120px 60px 60px;
             position: relative;
             background: var(--espresso);
             background-image: url('estate.jpg');
@@ -68,104 +80,129 @@
             background-position: center;
             background-repeat: no-repeat;
         }
-
-        /* Dark overlay for readability */
-        .hero::before {
+        .estate-section::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background: linear-gradient(
                 to bottom,
-                rgba(44, 24, 16, 0.5) 0%,
-                rgba(44, 24, 16, 0.65) 40%,
-                rgba(44, 24, 16, 0.8) 100%
+                rgba(44, 24, 16, 0.4) 0%,
+                rgba(44, 24, 16, 0.55) 40%,
+                rgba(44, 24, 16, 0.75) 100%
             );
             z-index: 1;
         }
-        .hero > * {
+
+        /* ===== SPLIT LAYOUT ===== */
+        .estate-content {
             position: relative;
             z-index: 2;
-        }
-
-        /* ===== HEADLINE ===== */
-        .headline {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: clamp(2.2rem, 6vw, 3.8rem);
-            font-weight: 600;
-            color: var(--cream);
-            line-height: 1.25;
-            max-width: 750px;
-            margin-bottom: 20px;
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-        .headline em {
-            color: var(--gold);
-            font-style: italic;
-        }
-
-        /* ===== SUBTITLE ===== */
-        .subheadline {
-            font-size: clamp(1rem, 2.5vw, 1.15rem);
-            font-weight: 300;
-            color: rgba(245, 235, 224, 0.7);
-            max-width: 480px;
-            line-height: 1.7;
-            margin-bottom: 45px;
-            animation: fadeInUp 1s ease-out 0.5s both;
-        }
-
-        /* ===== EMAIL FORM ===== */
-        .form-wrapper {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
             width: 100%;
-            max-width: 440px;
-            animation: fadeInUp 1s ease-out 0.7s both;
+            max-width: 1100px;
+            gap: 60px;
+        }
+
+        /* LEFT: COMING SOON */
+        .left-side {
+            flex: 1;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+        .coming-soon {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            font-weight: 700;
+            color: #FFFFFF;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+        .coming-soon-sub {
+            margin-top: 16px;
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.35);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+
+        /* RIGHT: INFO + FORM */
+        .right-side {
+            flex: 1;
+            max-width: 420px;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        .estate-description {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: rgba(245, 235, 224, 0.85);
+            line-height: 1.8;
+            margin-bottom: 35px;
         }
         .form-label {
-            font-size: 0.8rem;
+            font-size: 0.78rem;
             font-weight: 500;
             color: var(--gold);
             letter-spacing: 3px;
             text-transform: uppercase;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             display: block;
         }
-        .form-note {
-            margin-top: 14px;
-            font-size: 0.73rem;
-            color: rgba(245, 235, 224, 0.35);
-            font-weight: 300;
+        .form-wrapper {
+            width: 100%;
         }
-
-        /* ===== ESTATE TAG ===== */
-        .estate-tag {
-            margin-top: 50px;
-            font-size: 0.78rem;
+        .form-note {
+            margin-top: 12px;
+            font-size: 0.7rem;
             color: rgba(245, 235, 224, 0.3);
             font-weight: 300;
-            letter-spacing: 2px;
-            animation: fadeInUp 1s ease-out 1s both;
         }
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 20px 24px;
+            padding: 28px 24px;
             text-align: center;
             background: var(--espresso);
+            border-top: 1px solid rgba(245, 235, 224, 0.06);
         }
-        .footer-links {
-            display: flex;
-            gap: 24px;
-            justify-content: center;
-        }
-        .footer-links a {
-            font-size: 0.73rem;
-            color: rgba(245, 235, 224, 0.35);
-            text-decoration: none;
+        .footer-location {
+            font-size: 0.75rem;
+            color: rgba(245, 235, 224, 0.3);
             font-weight: 300;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
         }
-        .footer-links a:hover { color: var(--gold); }
+        .social-icons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 1px solid rgba(245, 235, 224, 0.15);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .social-icons a:hover {
+            border-color: var(--gold);
+            background: rgba(198, 153, 62, 0.1);
+        }
+        .social-icons a svg {
+            width: 16px;
+            height: 16px;
+            fill: rgba(245, 235, 224, 0.5);
+            transition: fill 0.3s ease;
+        }
+        .social-icons a:hover svg {
+            fill: var(--gold);
+        }
 
         /* ===== ANIMATIONS ===== */
         @keyframes fadeIn {
@@ -176,41 +213,92 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 600px) {
-            .logo { width: 140px; }
-            .logo-section { padding: 40px 24px 30px; }
-            .transition-zone { height: 80px; margin-bottom: -80px; }
-            .hero { padding: 100px 24px 50px; }
-            .estate-tag { margin-top: 35px; }
+        /* ===== MOBILE ===== */
+        @media (max-width: 768px) {
+            .cream-section { padding: 40px 24px 45px; }
+            .logo { width: 140px; margin-bottom: 30px; }
+            .transition-zone { height: 70px; margin-bottom: -70px; }
+            .estate-section { padding: 90px 24px 50px; }
+            .estate-content {
+                flex-direction: column;
+                gap: 35px;
+                align-items: flex-start;
+            }
+            .coming-soon { font-size: 3rem; }
+            .right-side { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <!-- TOP: Logo on cream (matches logo background perfectly) -->
-    <section class="logo-section">
+    <!-- TOP: Logo + Headline on cream -->
+    <section class="cream-section">
         <img src="logo.png" alt="Kaapi Labs" class="logo">
+        <h1 class="headline">What if your morning filter coffee had <em>protein?</em></h1>
     </section>
 
-    <!-- TRANSITION: cream melts into the estate photo -->
+    <!-- TRANSITION: cream melts into estate -->
     <div class="transition-zone"></div>
 
-    <!-- BOTTOM: Estate photo with headline + form -->
-    <section class="hero">
-        <h1 class="headline">What if your morning filter coffee had <em>protein?</em></h1>
-        <p class="subheadline">Estate-origin coffee from the Western Ghats of Karnataka. 100% vegetarian. Works hot and cold. Coming soon.</p>
-        <div class="form-wrapper">
-            <label class="form-label">Join the waitlist</label>
-            <script async src="https://eocampaign1.com/form/8258530a-939b-11f1-88f6-e9bf8e9e9083.js" data-form="8258530a-939b-11f1-88f6-e9bf8e9e9083"></script>
-            <p class="form-note">No spam. Just one email when we launch.</p>
+    <!-- ESTATE PHOTO: split layout -->
+    <section class="estate-section">
+        <div class="estate-content">
+
+            <!-- LEFT: Coming Soon -->
+            <div class="left-side">
+                <h2 class="coming-soon">Coming<br>Soon</h2>
+                <p class="coming-soon-sub">Sakleshpur · Chikmagalur</p>
+            </div>
+
+            <!-- RIGHT: Description + Form -->
+            <div class="right-side">
+                <p class="estate-description">
+                    Estate-origin coffee from the Western Ghats of Karnataka.
+                    100% vegetarian. Works hot and cold.
+                </p>
+                <div class="form-wrapper">
+                    <label class="form-label">Join the waitlist</label>
+                    <script async src="https://eocampaign1.com/form/8258530a-939b-11f1-88f6-e9bf8e9e9083.js" data-form="8258530a-939b-11f1-88f6-e9bf8e9e9083"></script>
+                    <p class="form-note">No spam. Just one email when we launch.</p>
+                </div>
+            </div>
+
         </div>
-        <p class="estate-tag">Sakleshpur · Chikmagalur · Karnataka</p>
     </section>
 
+    <!-- FOOTER: Social icons -->
     <footer class="footer">
-        <div class="footer-links">
-            <a href="https://instagram.com/kaapilabs" target="_blank">Instagram</a>
-            <a href="mailto:hello@kaapilabs.com">Contact</a>
+        <p class="footer-location">Kaapi Labs · Karnataka, India</p>
+        <div class="social-icons">
+
+            <!-- Instagram -->
+            <a href="https://instagram.com/kaapilabs" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
+            </a>
+
+            <!-- YouTube -->
+            <a href="https://youtube.com/@kaapilabs" target="_blank" aria-label="YouTube">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                </svg>
+            </a>
+
+            <!-- Facebook -->
+            <a href="https://facebook.com/kaapilabs" target="_blank" aria-label="Facebook">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+            </a>
+
+            <!-- Email -->
+            <a href="mailto:hello@kaapilabs.com" aria-label="Email">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+            </a>
+
         </div>
     </footer>
 
