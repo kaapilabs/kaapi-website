@@ -5,13 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kaapi Labs | Protein Coffee for Your Daily Kaapi</title>
   <meta name="description" content="Kaapi Labs brings together real Karnataka coffee and protein in a convenient everyday cup. Join the early-access list and be first to taste it." />
-  <meta property="og:title" content="Kaapi Labs | Protein Coffee for Your Daily Kaapi" />
-  <meta property="og:description" content="Real Karnataka coffee with protein built in. Join the early-access list." />
-  <meta property="og:type" content="website" />
+  <link rel="canonical" href="https://www.kaapilabs.com/" />
 
+  <!-- Favicons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#F5EBE0">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kaapi Labs | Protein Coffee for Your Daily Kaapi" />
+  <meta property="og:description" content="Real Karnataka coffee with protein built in. Join the early-access list and be first to taste it." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.kaapilabs.com/" />
+  <meta property="og:image" content="https://www.kaapilabs.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Kaapi Labs Protein Coffee. Your daily kaapi, now with protein." />
+  <meta property="og:site_name" content="Kaapi Labs" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kaapi Labs | Protein Coffee for Your Daily Kaapi" />
+  <meta name="twitter:description" content="Real Karnataka coffee with protein built in. Join the early-access list." />
+  <meta name="twitter:image" content="https://www.kaapilabs.com/og-image.jpg" />
+
+  <!-- Non-blocking font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
 
   <style>
     /* ============================================================
@@ -115,6 +140,7 @@
       text-decoration: none;
       color: var(--espresso);
     }
+    .brand picture { display: inline-flex; align-items: center; }
     .brand img {
       height: 56px;
       width: auto;
@@ -253,11 +279,60 @@
     .hero-visual {
       position: relative;
     }
+    .hero-visual .hero-img-wrap {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      isolation: isolate;
+    }
     .hero-visual img {
       width: 100%;
       height: auto;
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
+      display: block;
+      /* Subtle Ken Burns / breathing motion */
+      animation: heroBreathe 22s ease-in-out infinite alternate;
+      transform-origin: 55% 65%;
+    }
+    @keyframes heroBreathe {
+      0%   { transform: scale(1); }
+      100% { transform: scale(1.045); }
+    }
+
+    /* Animated steam rising from the tumbler */
+    .steam {
+      position: absolute;
+      /* Positioned over the tumbler in the hero image */
+      right: 15%;
+      top: 25%;
+      width: 90px;
+      height: 200px;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0.55;
+      mix-blend-mode: screen;
+    }
+    .steam span {
+      position: absolute;
+      bottom: 0;
+      width: 14px;
+      height: 14px;
+      background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      animation: rise 5s linear infinite;
+    }
+    .steam span:nth-child(1) { left: 20%; animation-delay: 0s;   }
+    .steam span:nth-child(2) { left: 45%; animation-delay: 1.2s; }
+    .steam span:nth-child(3) { left: 70%; animation-delay: 2.4s; }
+    .steam span:nth-child(4) { left: 30%; animation-delay: 3.6s; }
+    .steam span:nth-child(5) { left: 60%; animation-delay: 0.6s; }
+    @keyframes rise {
+      0%   { transform: translateY(0)     scale(0.6); opacity: 0;   }
+      25%  { opacity: 0.9;                                          }
+      100% { transform: translateY(-180px) scale(1.8); opacity: 0;  }
+    }
+    @media (max-width: 980px) {
+      .steam { right: 12%; top: 30%; }
     }
 
     /* Product proof strip under hero */
@@ -546,12 +621,27 @@
     .origin-hero {
       position: relative;
       min-height: 640px;
-      background-image: url('estate-sunset.jpg');
+      background-image: image-set(
+        url('estate-sunset-600w.jpg') 1x
+      );
+      background-image: -webkit-image-set(
+        url('estate-sunset-600w.jpg') 1x
+      );
       background-size: cover;
       background-position: center;
       display: flex;
       align-items: flex-end;
       overflow: hidden;
+    }
+    @media (min-width: 700px) {
+      .origin-hero {
+        background-image: url('estate-sunset-1000w.jpg');
+      }
+    }
+    @media (min-width: 1100px) {
+      .origin-hero {
+        background-image: url('estate-sunset.jpg');
+      }
     }
     .origin-hero::before {
       content: "";
@@ -898,10 +988,147 @@
       .site-header .brand img { height: 44px; }
     }
 
+    /* ============================================================
+       Mobile sticky CTA bar
+       ============================================================ */
+    .mobile-cta {
+      position: fixed;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      z-index: 90;
+      display: none;
+      padding: 12px 16px;
+      background: rgba(44, 24, 16, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 999px;
+      box-shadow: 0 16px 40px rgba(44, 24, 16, 0.35);
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.1), opacity 0.3s ease;
+    }
+    .mobile-cta.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-cta-text {
+      color: var(--ivory);
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.2;
+      flex: 1;
+      min-width: 0;
+    }
+    .mobile-cta-text small {
+      display: block;
+      color: rgba(255, 250, 242, 0.6);
+      font-size: 0.72rem;
+      margin-top: 2px;
+      font-weight: 400;
+    }
+    .mobile-cta a.btn {
+      background: var(--gold);
+      color: var(--espresso);
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .mobile-cta a.btn:hover { background: #d9a94a; }
+    @media (max-width: 720px) {
+      .mobile-cta { display: flex; }
+      /* Add breathing room at page end so bar doesn't cover footer content */
+      footer { padding-bottom: 100px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-cta { transition: opacity 0.2s ease; transform: none; }
+    }
+
+    /* ============================================================
+       Micro-interactions
+       ============================================================ */
+    /* FAQ: soft background tint on hover, expanded state has slightly deeper text */
+    .faq-item {
+      transition: background 0.25s ease;
+      border-radius: 6px;
+      padding: 0 12px;
+      margin: 0 -12px;
+    }
+    .faq-item:hover { background: rgba(198, 153, 62, 0.05); }
+    .faq-item[open] { background: rgba(198, 153, 62, 0.04); }
+
+    /* Step cards: soft image zoom on hover */
+    .step { position: relative; }
+    .step-img-wrap { overflow: hidden; }
+    .step-img { transition: transform 0.6s cubic-bezier(0.2, 0.9, 0.3, 1); }
+    .step:hover .step-img { transform: scale(1.05); }
+
+    /* Nav CTA: subtle glow pulse on hover */
+    .nav-links .btn-primary { position: relative; overflow: hidden; }
+    .nav-links .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(198, 153, 62, 0.35), transparent 60%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .nav-links .btn-primary:hover::after { opacity: 1; }
+
+    /* Buttons everywhere: arrow reveal on hover */
+    .btn-primary, .btn-gold {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Compare highlight card: subtle shimmer accent */
+    .compare-card.highlight {
+      position: relative;
+      overflow: hidden;
+    }
+    .compare-card.highlight::before {
+      content: "";
+      position: absolute;
+      top: 0; left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(198, 153, 62, 0.10), transparent);
+      transition: left 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+      pointer-events: none;
+    }
+    .compare-card.highlight:hover::before { left: 140%; }
+
+    /* Origin section eyebrow: soft glow on the gold rule */
+    .origin-content .eyebrow::before {
+      box-shadow: 0 0 8px rgba(198, 153, 62, 0.6);
+    }
+
+    /* Section reveal: slight stagger via CSS delays for grouped items */
+    .steps .step:nth-child(1) { transition-delay: 0.05s; }
+    .steps .step:nth-child(2) { transition-delay: 0.15s; }
+    .steps .step:nth-child(3) { transition-delay: 0.25s; }
+    .proof-strip .proof-item { transition: transform 0.5s ease; }
+    .proof-strip:hover .proof-item { transform: translateY(0); }
+
+    /* Smooth focus rings for accessibility */
+    a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .reveal { opacity: 1; transform: none; transition: none; }
-      * { animation: none !important; transition: none !important; }
+      .hero-visual img { animation: none; }
+      .steam { display: none; }
+      .compare-card.highlight::before { display: none; }
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
@@ -913,7 +1140,7 @@
   <header class="site-header" id="top">
     <div class="container nav">
       <a href="#top" class="brand" aria-label="Kaapi Labs home">
-        <img src="logo.png" alt="Kaapi Labs logo" />
+        <picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="Kaapi Labs logo" width="320" height="267" /></picture>
         <span class="brand-name">kaapi labs</span>
       </a>
       <nav>
@@ -950,7 +1177,19 @@
             </div>
           </div>
           <div class="hero-visual reveal">
-            <img src="hero-product.jpg" alt="Kaapi Labs Protein Coffee pouch beside a steaming stainless steel tumbler of freshly brewed coffee, with wooden scoop and beans on a rustic wooden board" />
+            <div class="hero-img-wrap">
+              <img
+                src="hero-product.jpg"
+                srcset="hero-product-400w.jpg 400w, hero-product-800w.jpg 800w, hero-product-1200w.jpg 1200w, hero-product.jpg 1300w"
+                sizes="(max-width: 980px) 100vw, 50vw"
+                alt="Kaapi Labs Protein Coffee pouch beside a steaming stainless steel tumbler of freshly brewed coffee, with wooden scoop and beans on a rustic wooden board"
+                width="1300" height="866"
+                fetchpriority="high"
+              />
+              <div class="steam" aria-hidden="true">
+                <span></span><span></span><span></span><span></span><span></span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1066,7 +1305,7 @@
 
         <div class="steps">
           <article class="step reveal">
-            <img class="step-img" src="step-1-scoop.jpg" alt="Wooden bowl of finely ground Kaapi Labs coffee with a small wooden scoop" loading="lazy" />
+            <div class="step-img-wrap"><img class="step-img" src="step-1-scoop.jpg" width="800" height="748" alt="Wooden bowl of finely ground Kaapi Labs coffee with a small wooden scoop" loading="lazy" /></div>
             <div class="step-body">
               <div class="step-number">1</div>
               <h3>Scoop</h3>
@@ -1074,7 +1313,7 @@
             </div>
           </article>
           <article class="step reveal">
-            <img class="step-img" src="step-2-stir.jpg" alt="Hot water being poured into a stainless steel tumbler of freshly brewed protein coffee" loading="lazy" />
+            <div class="step-img-wrap"><img class="step-img" src="step-2-stir.jpg" width="800" height="663" alt="Hot water being poured into a stainless steel tumbler of freshly brewed protein coffee" loading="lazy" /></div>
             <div class="step-body">
               <div class="step-number">2</div>
               <h3>Stir</h3>
@@ -1082,7 +1321,7 @@
             </div>
           </article>
           <article class="step reveal">
-            <img class="step-img" src="step-3-sip.jpg" alt="Warm ceramic mug of Kaapi Labs protein coffee with rich crema and rising steam" loading="lazy" />
+            <div class="step-img-wrap"><img class="step-img" src="step-3-sip.jpg" width="800" height="748" alt="Warm ceramic mug of Kaapi Labs protein coffee with rich crema and rising steam" loading="lazy" /></div>
             <div class="step-body">
               <div class="step-number">3</div>
               <h3>Sip</h3>
@@ -1107,7 +1346,14 @@
             <p class="taste-secondary">Because adding protein should not mean compromising your kaapi.</p>
           </div>
           <div class="taste-visual reveal">
-            <img src="taste-tumbler.jpg" alt="Close up of a steaming stainless steel tumbler of freshly brewed protein coffee with rich crema on a dark wooden surface" loading="lazy" />
+            <img
+              src="taste-tumbler.jpg"
+              srcset="taste-tumbler-400w.jpg 400w, taste-tumbler-700w.jpg 700w, taste-tumbler.jpg 752w"
+              sizes="(max-width: 980px) 100vw, 40vw"
+              alt="Close up of a steaming stainless steel tumbler of freshly brewed protein coffee with rich crema on a dark wooden surface"
+              width="752" height="586"
+              loading="lazy"
+            />
           </div>
         </div>
       </div>
@@ -1202,6 +1448,14 @@
 
           <details class="faq-item">
             <summary>
+              Where will Kaapi Labs be available?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Kaapi Labs will launch across India, shipping to most pin codes. Early-access members get first pick of the launch batch.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
               When is Kaapi Labs launching?
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </summary>
@@ -1215,7 +1469,7 @@
     <!-- ============================================================
          VIEW 7: FINAL CTA
          ============================================================ -->
-    <section class="final-cta" id="early-access-bottom">
+    <section class="final-cta" id="final-cta-section">
       <div class="container">
         <div class="final-cta-inner reveal">
           <div class="eyebrow">Coming soon</div>
@@ -1244,7 +1498,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="#top" class="brand" aria-label="Kaapi Labs home">
-            <img src="logo.png" alt="Kaapi Labs logo" />
+            <picture><source srcset="logo.webp" type="image/webp"><img src="logo.png" alt="Kaapi Labs logo" width="320" height="267" /></picture>
             <span class="brand-name">kaapi labs</span>
           </a>
           <p class="footer-statement">
@@ -1268,8 +1522,8 @@
           <h4>Contact</h4>
           <ul>
             <li><a href="mailto:hello@kaapilabs.com">hello@kaapilabs.com</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="terms.html">Terms</a></li>
           </ul>
         </div>
 
@@ -1284,11 +1538,21 @@
       </div>
 
       <div class="footer-bottom">
-        <div>© <span id="year"></span> Kaapi Labs. All rights reserved.</div>
+        <div>© 2026 Kaapi Labs. All rights reserved.</div>
         <div>Made in India.</div>
       </div>
     </div>
   </footer>
+
+
+  <!-- Sticky mobile CTA bar (hidden on desktop, shown on scroll on mobile) -->
+  <div class="mobile-cta" id="mobileCta" aria-hidden="false">
+    <div class="mobile-cta-text">
+      Ready to try Kaapi Labs?
+      <small>Join the early-access list</small>
+    </div>
+    <a href="#early-access" class="btn">Get Early Access</a>
+  </div>
 
 
   <!-- ============================================================
@@ -1359,7 +1623,6 @@
           const input = document.querySelector('#early-access input[type="email"]');
           if (input) {
             input.focus({ preventScroll: true });
-            // Subtle attention pulse
             input.style.transition = 'box-shadow 0.3s ease';
             input.style.boxShadow = '0 0 0 4px rgba(198, 153, 62, 0.25)';
             setTimeout(() => { input.style.boxShadow = ''; }, 1200);
@@ -1369,9 +1632,36 @@
     });
 
     /* ------------------------------------------------------------
-       Footer year
+       Sticky mobile CTA bar: show after user scrolls past hero,
+       hide again when they reach the final CTA form.
        ------------------------------------------------------------ */
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const mobileCta = document.getElementById('mobileCta');
+    const finalCta = document.getElementById('final-cta-section');
+    const heroEl = document.querySelector('.hero');
+    if (mobileCta && heroEl && finalCta) {
+      const updateCta = () => {
+        const heroBottom = heroEl.getBoundingClientRect().bottom;
+        const finalTop = finalCta.getBoundingClientRect().top;
+        const viewportH = window.innerHeight;
+        // Show if hero is scrolled past AND final CTA hasn't entered viewport
+        const shouldShow = heroBottom < 100 && finalTop > viewportH * 0.6;
+        mobileCta.classList.toggle('visible', shouldShow);
+      };
+      window.addEventListener('scroll', updateCta, { passive: true });
+      updateCta();
+    }
+
+    /* ------------------------------------------------------------
+       Nav CTA: dynamic hover glow tracking cursor
+       ------------------------------------------------------------ */
+    const navCta = document.querySelector('.nav-links .btn-primary');
+    if (navCta) {
+      navCta.addEventListener('mousemove', (e) => {
+        const rect = navCta.getBoundingClientRect();
+        navCta.style.setProperty('--x', ((e.clientX - rect.left) / rect.width * 100) + '%');
+        navCta.style.setProperty('--y', ((e.clientY - rect.top) / rect.height * 100) + '%');
+      });
+    }
   </script>
 </body>
 </html>
