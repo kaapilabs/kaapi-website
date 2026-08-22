@@ -589,24 +589,30 @@
     }
     .taste-inner {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 72px;
+      grid-template-columns: 1fr;
+      gap: 56px;
       align-items: center;
       position: relative;
       z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
     }
     .taste h2 {
       color: var(--ivory);
       font-size: clamp(2rem, 4.4vw, 3.4rem);
       line-height: 1.05;
     }
-    .taste .eyebrow { color: var(--gold); }
+    .taste .eyebrow { color: var(--gold); justify-content: center; }
     .taste .eyebrow::before { background: var(--gold); }
+    .taste .eyebrow::after { content: ""; width: 28px; height: 1px; background: var(--gold); }
     .taste p {
       color: rgba(255, 250, 242, 0.72);
       font-size: 1.05rem;
       margin-top: 22px;
-      max-width: 500px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .taste-secondary {
       margin-top: 20px !important;
@@ -619,9 +625,12 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
-      aspect-ratio: 4 / 5;
+      width: 100%;
+      aspect-ratio: 781 / 321; /* native aspect of the source image */
+      max-width: 900px;
+      margin: 0 auto;
     }
-    .taste-visual img { width: 100%; height: 100%; object-fit: cover; }
+    .taste-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
     /* ============================================================
        View 6: Origin
@@ -946,7 +955,7 @@
         box-shadow: var(--shadow);
       }
 
-      .hero-grid, .why-inner, .taste-inner {
+      .hero-grid, .why-inner {
         grid-template-columns: 1fr;
         gap: 40px;
       }
@@ -1356,10 +1365,10 @@
           <div class="taste-visual reveal">
             <img
               src="taste-tumbler.jpg"
-              srcset="taste-tumbler-400w.jpg 400w, taste-tumbler-700w.jpg 700w, taste-tumbler.jpg 752w"
-              sizes="(max-width: 980px) 100vw, 40vw"
-              alt="Close up of a steaming stainless steel tumbler of freshly brewed protein coffee with rich crema on a dark wooden surface"
-              width="752" height="586"
+              srcset="taste-tumbler-400w.jpg 400w, taste-tumbler-600w.jpg 600w, taste-tumbler.jpg 781w"
+              sizes="(max-width: 980px) 100vw, min(900px, 90vw)"
+              alt="Close up of a steaming stainless steel tumbler of freshly brewed coffee with rich crema on a dark wooden surface with scattered coffee beans"
+              width="781" height="321"
               loading="lazy"
             />
           </div>
