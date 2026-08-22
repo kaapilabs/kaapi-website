@@ -112,31 +112,36 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
       color: var(--espresso);
     }
-    .brand img { width: 42px; height: 42px; object-fit: contain; }
-    .brand-name {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      color: var(--espresso);
+    .brand img {
+      height: 56px;
+      width: auto;
+      object-fit: contain;
+      display: block;
     }
+    .brand-name { display: none; } /* wordmark is inside the logo already */
+    .site-header .brand img { height: 52px; }
+    .footer-brand .brand img { height: 64px; }
+
+    /* Give anchor targets clearance from the sticky header */
+    [id] { scroll-margin-top: 90px; }
     .nav-links {
       display: flex;
       align-items: center;
       gap: 32px;
     }
-    .nav-links a {
+    .nav-links a:not(.btn) {
       text-decoration: none;
       font-size: 0.92rem;
       font-weight: 500;
       color: rgba(62, 38, 21, 0.78);
       transition: color 0.2s ease;
     }
-    .nav-links a:hover { color: var(--gold-deep); }
+    .nav-links a:not(.btn):hover { color: var(--gold-deep); }
+    /* Ensure the nav CTA keeps its white text */
+    .nav-links .btn-primary { color: var(--ivory); }
     .btn {
       display: inline-flex;
       align-items: center;
@@ -211,6 +216,15 @@
       height: 1px;
       background: var(--gold);
     }
+    .eyebrow.center {
+      justify-content: center;
+    }
+    .eyebrow.center::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: var(--gold);
+    }
     .hero h1 {
       font-size: clamp(2.6rem, 5.4vw, 4.6rem);
       line-height: 1.02;
@@ -227,7 +241,9 @@
     .hero-form-wrap {
       margin-top: 8px;
       max-width: 480px;
+      min-height: 84px; /* reserve space so async form load does not shift page */
     }
+    .final-cta-form { min-height: 84px; }
     .form-microcopy {
       margin-top: 12px;
       font-size: 0.82rem;
@@ -246,9 +262,9 @@
 
     /* Product proof strip under hero */
     .proof-strip {
-      margin-top: 72px;
+      margin-top: 64px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 0;
       background: var(--ivory);
       border: 1px solid var(--line);
@@ -257,7 +273,7 @@
       box-shadow: var(--shadow-sm);
     }
     .proof-item {
-      padding: 22px 28px;
+      padding: 24px 22px;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -265,16 +281,33 @@
     }
     .proof-item:last-child { border-right: 0; }
     .proof-item .icon {
-      width: 40px;
-      height: 40px;
+      width: 34px;
+      height: 34px;
       flex-shrink: 0;
       display: grid;
       place-items: center;
       color: var(--gold-deep);
     }
-    .proof-item .icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; }
-    .proof-item .label { font-weight: 600; color: var(--espresso); font-size: 0.98rem; }
-    .proof-item .sub { font-size: 0.82rem; color: var(--muted); }
+    .proof-item .icon svg {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .proof-item .label {
+      font-weight: 600;
+      color: var(--espresso);
+      font-size: 0.96rem;
+      line-height: 1.25;
+    }
+    .proof-item .sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 2px;
+    }
 
     /* ============================================================
        Section base
@@ -295,47 +328,7 @@
     .section-head.center .section-lead { margin-inline: auto; }
 
     /* ============================================================
-       View 2: Benefits
-       ============================================================ */
-    .benefits {
-      background: var(--paper);
-      padding: 88px 0;
-    }
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-    .benefit {
-      padding: 40px 32px;
-      text-align: center;
-      border-right: 1px solid var(--line);
-    }
-    .benefit:last-child { border-right: 0; }
-    .benefit-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 20px;
-      color: var(--gold-deep);
-    }
-    .benefit-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; }
-    .benefit h3 {
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      margin-bottom: 8px;
-      color: var(--espresso);
-    }
-    .benefit p {
-      font-size: 0.95rem;
-      color: var(--muted);
-      max-width: 260px;
-      margin: 0 auto;
-    }
-
-    /* ============================================================
-       View 3: Why (Comparison)
+       View 2: Why (Comparison)
        ============================================================ */
     .why {
       background: var(--cream-2);
@@ -599,60 +592,7 @@
     }
 
     /* ============================================================
-       View 7: Nutrition
-       ============================================================ */
-    .nutrition {
-      background: var(--cream);
-      padding: 112px 0;
-    }
-    .nutrition-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin-bottom: 32px;
-    }
-    .stat {
-      background: var(--ivory);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: 36px 24px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-    }
-    .stat-value {
-      font-family: var(--serif);
-      font-size: clamp(2.2rem, 4vw, 3rem);
-      font-weight: 500;
-      color: var(--espresso);
-      line-height: 1;
-      margin-bottom: 8px;
-    }
-    .stat-label {
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--gold-deep);
-      font-weight: 600;
-    }
-    .stat.qual .stat-value {
-      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-      font-family: var(--serif);
-    }
-    .stat-sub {
-      margin-top: 10px;
-      font-size: 0.85rem;
-      color: var(--muted);
-    }
-    .nutrition-note {
-      text-align: center;
-      color: var(--muted);
-      max-width: 640px;
-      margin: 0 auto;
-      font-size: 0.98rem;
-    }
-
-    /* ============================================================
-       View 8: FAQ
+       View 6: FAQ
        ============================================================ */
     .faq {
       background: var(--paper);
@@ -910,21 +850,14 @@
       }
       .hero { padding: 48px 0 72px; }
       .proof-strip {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
       }
       .proof-item {
-        border-right: 0;
+        border-right: 1px solid var(--line);
         border-bottom: 1px solid var(--line);
       }
-      .proof-item:last-child { border-bottom: 0; }
-
-      .benefits-grid { grid-template-columns: 1fr; }
-      .benefit {
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-        padding: 32px 20px;
-      }
-      .benefit:last-child { border-bottom: 0; }
+      .proof-item:nth-child(2n) { border-right: 0; }
+      .proof-item:nth-last-child(-n+2) { border-bottom: 0; }
 
       .compare {
         grid-template-columns: 1fr;
@@ -952,13 +885,17 @@
     @media (max-width: 560px) {
       .hero { padding: 32px 0 56px; }
       .hero h1 { font-size: 2.4rem; }
-      .brand-name { display: none; }
-      .nutrition-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .stat { padding: 24px 16px; }
+      .proof-strip { grid-template-columns: 1fr; }
+      .proof-item {
+        border-right: 0 !important;
+        border-bottom: 1px solid var(--line) !important;
+      }
+      .proof-item:last-child { border-bottom: 0 !important; }
       .cta-benefits { flex-direction: column; gap: 6px; }
       .cta-benefits span::before { display: none; }
       .footer-grid { grid-template-columns: 1fr; }
       .footer-bottom { flex-direction: column; text-align: center; }
+      .site-header .brand img { height: 44px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -1019,8 +956,8 @@
 
         <div class="proof-strip reveal">
           <div class="proof-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24"><path d="M7 3h10l-1 5H8L7 3z"/><path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8z"/><path d="M10 13h4"/></svg>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M8 3h8v3H8z"/><path d="M7 6h10v13a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V6z"/><path d="M10 13h4"/></svg>
             </div>
             <div>
               <div class="label"><span data-val="protein">~10g</span> Protein</div>
@@ -1028,21 +965,30 @@
             </div>
           </div>
           <div class="proof-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24"><path d="M4 11h13a4 4 0 0 1 0 8h-1"/><path d="M4 11v6a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4v-6H4z"/><path d="M8 4c0 1 .8 1.2.8 2.2M12 4c0 1 .8 1.2.8 2.2"/></svg>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4v-6H4z"/><path d="M8 4c0 1 .6 1.4.6 2.4M12 4c0 1 .6 1.4.6 2.4"/></svg>
             </div>
             <div>
               <div class="label"><span data-val="caffeine">~60mg</span> Caffeine</div>
-              <div class="sub">A balanced coffee boost</div>
+              <div class="sub">A balanced boost</div>
             </div>
           </div>
           <div class="proof-item">
-            <div class="icon">
-              <svg viewBox="0 0 24 24"><path d="M3 18c2 -4 6 -4 9 -8s3 -6 9 -6c-1 6 -3 8 -8 11s-6 5 -10 3z"/><path d="M8 15c2 -3 5 -5 9 -8"/></svg>
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 3c1.5 3 4 4 4 8a4 4 0 0 1-8 0c0-3 2-4 4-8z"/><path d="M12 12c.8-1 2-1.5 2-3"/></svg>
+            </div>
+            <div>
+              <div class="label"><span data-val="calories">~60</span> Calories</div>
+              <div class="sub">Everyday friendly</div>
+            </div>
+          </div>
+          <div class="proof-item">
+            <div class="icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="4.5" ry="8" transform="rotate(45 12 12)"/><path d="M8 16c1.5-4 4-6.5 8-8"/></svg>
             </div>
             <div>
               <div class="label">Real Karnataka Coffee</div>
-              <div class="sub">Sourced from the Western Ghats</div>
+              <div class="sub">From the Western Ghats</div>
             </div>
           </div>
         </div>
@@ -1050,40 +996,10 @@
     </section>
 
 
-    <!-- ============================================================
-         VIEW 2: BENEFITS
-         ============================================================ -->
-    <section class="benefits" aria-label="Key product benefits">
-      <div class="container">
-        <div class="benefits-grid reveal">
-          <div class="benefit">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 48 48"><path d="M18 6h12l-2 8H20l-2-8z"/><path d="M16 14h16l-2 24a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4l-2-24z"/><path d="M20 24h8"/></svg>
-            </div>
-            <h3><span data-val="protein">~10g</span> Protein</h3>
-            <p>A meaningful protein boost built into your morning coffee.</p>
-          </div>
-          <div class="benefit">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 48 48"><path d="M8 22h26a8 8 0 0 1 0 16h-2"/><path d="M8 22v12a8 8 0 0 0 8 8h10a8 8 0 0 0 8-8V22H8z"/><path d="M16 8c0 2 1.5 2.5 1.5 4.5M24 8c0 2 1.5 2.5 1.5 4.5M32 8c0 2 1.5 2.5 1.5 4.5"/></svg>
-            </div>
-            <h3><span data-val="caffeine">~60mg</span> Caffeine</h3>
-            <p>A balanced coffee boost for your everyday morning routine.</p>
-          </div>
-          <div class="benefit">
-            <div class="benefit-icon">
-              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="9" ry="16" transform="rotate(45 24 24)"/><path d="M16 32c4 -8 12 -12 20 -12"/></svg>
-            </div>
-            <h3>Real Karnataka Coffee</h3>
-            <p>Coffee sourced from Karnataka's Western Ghats.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Benefits section removed: it repeated the same info as the hero proof strip. -->
 
     <!-- ============================================================
-         VIEW 3: WHY (comparison)
+         VIEW 2: WHY (comparison)
          ============================================================ -->
     <section class="why" id="why">
       <div class="container">
@@ -1139,12 +1055,12 @@
 
 
     <!-- ============================================================
-         VIEW 4: HOW IT WORKS
+         VIEW 3: HOW IT WORKS
          ============================================================ -->
     <section class="how">
       <div class="container">
         <div class="section-head center reveal">
-          <div class="eyebrow" style="justify-content: center;">How it works</div>
+          <div class="eyebrow center">How it works</div>
           <h2 class="section-title">Coffee first. Protein built in.</h2>
         </div>
 
@@ -1162,7 +1078,7 @@
             <div class="step-body">
               <div class="step-number">2</div>
               <h3>Stir</h3>
-              <p>Mix into your coffee and stir well.</p>
+              <p>Add hot water or milk and stir well.</p>
             </div>
           </article>
           <article class="step reveal">
@@ -1179,7 +1095,7 @@
 
 
     <!-- ============================================================
-         VIEW 5: TASTE
+         VIEW 4: TASTE
          ============================================================ -->
     <section class="taste">
       <div class="container">
@@ -1199,7 +1115,7 @@
 
 
     <!-- ============================================================
-         VIEW 6: ORIGIN
+         VIEW 5: ORIGIN
          ============================================================ -->
     <section class="origin" id="origin" aria-label="Coffee origin">
       <div class="origin-hero">
@@ -1215,47 +1131,15 @@
     </section>
 
 
-    <!-- ============================================================
-         VIEW 7: NUTRITION
-         ============================================================ -->
-    <section class="nutrition">
-      <div class="container">
-        <div class="section-head center reveal">
-          <div class="eyebrow" style="justify-content: center;">Nutrition at a glance</div>
-          <h2 class="section-title">What's in your cup.</h2>
-        </div>
-
-        <div class="nutrition-grid reveal">
-          <div class="stat">
-            <div class="stat-value" data-val="protein">~10g</div>
-            <div class="stat-label">Protein</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value" data-val="calories">~60</div>
-            <div class="stat-label">Calories</div>
-          </div>
-          <div class="stat">
-            <div class="stat-value" data-val="caffeine">~60mg</div>
-            <div class="stat-label">Caffeine</div>
-          </div>
-          <div class="stat qual">
-            <div class="stat-value" data-val="vegetarian">Vegetarian</div>
-            <div class="stat-label">Everyday friendly</div>
-          </div>
-        </div>
-
-        <p class="nutrition-note reveal">Meaningful protein, moderate caffeine and approximately 60 calories in a cup designed for your everyday morning.</p>
-      </div>
-    </section>
-
+    <!-- Nutrition section removed: the values are shown in the hero proof strip and covered in detail in the FAQ. -->
 
     <!-- ============================================================
-         VIEW 8: FAQ
+         VIEW 6: FAQ
          ============================================================ -->
     <section class="faq" id="faq">
       <div class="container">
         <div class="section-head center reveal">
-          <div class="eyebrow" style="justify-content: center;">Questions</div>
+          <div class="eyebrow center">Questions</div>
           <h2 class="section-title">Frequently asked.</h2>
         </div>
 
@@ -1289,7 +1173,7 @@
               How much protein is in one serving?
               <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </summary>
-            <p class="faq-answer">Our current product target is approximately <span data-val="protein-plain">10 g</span> of protein per serving.</p>
+            <p class="faq-answer">Our current product target is approximately <span data-val="protein-plain">10&nbsp;g</span> of protein per serving.</p>
           </details>
 
           <details class="faq-item">
@@ -1329,7 +1213,7 @@
 
 
     <!-- ============================================================
-         VIEW 9: FINAL CTA
+         VIEW 7: FINAL CTA
          ============================================================ -->
     <section class="final-cta" id="early-access-bottom">
       <div class="container">
@@ -1464,6 +1348,24 @@
       if (e.target.tagName === 'A') {
         document.getElementById('navLinks').classList.remove('open');
       }
+    });
+
+    /* ------------------------------------------------------------
+       Focus the email input after clicking "Get Early Access"
+       ------------------------------------------------------------ */
+    document.querySelectorAll('a[href="#early-access"]').forEach(link => {
+      link.addEventListener('click', () => {
+        setTimeout(() => {
+          const input = document.querySelector('#early-access input[type="email"]');
+          if (input) {
+            input.focus({ preventScroll: true });
+            // Subtle attention pulse
+            input.style.transition = 'box-shadow 0.3s ease';
+            input.style.boxShadow = '0 0 0 4px rgba(198, 153, 62, 0.25)';
+            setTimeout(() => { input.style.boxShadow = ''; }, 1200);
+          }
+        }, 700);
+      });
     });
 
     /* ------------------------------------------------------------
