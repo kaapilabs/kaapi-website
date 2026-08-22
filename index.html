@@ -3,632 +3,1439 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kaapi Labs — India's First Protein Coffee</title>
-  <meta name="description" content="Kaapi Labs reimagines your daily kaapi with protein-rich, estate-origin coffee from the Western Ghats of Karnataka. Coming soon — join the waitlist." />
+  <title>Kaapi Labs | Protein Coffee for Your Daily Kaapi</title>
+  <meta name="description" content="Kaapi Labs brings together real Karnataka coffee and protein in a convenient everyday cup. Join the early-access list and be first to taste it." />
+  <meta property="og:title" content="Kaapi Labs | Protein Coffee for Your Daily Kaapi" />
+  <meta property="og:description" content="Real Karnataka coffee with protein built in. Join the early-access list." />
+  <meta property="og:type" content="website" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ============================================================
+       KAAPI LABS  Design tokens
+       ============================================================ */
     :root {
+      /* Palette */
       --cream: #F5EBE0;
-      --bg: #fbf5ea;
-      --bg-2: #f2e7d4;
-      --paper: #fffaf2;
+      --cream-2: #EFE2D1;
+      --paper: #FBF5EA;
+      --ivory: #FFFAF2;
       --espresso: #2C1810;
-      --text: #3e2615;
-      --muted: rgba(62, 38, 21, 0.72);
-      --line: rgba(62, 38, 21, 0.12);
+      --coffee: #3E2615;
+      --caramel: #8B5A2B;
       --gold: #C6993E;
-      --gold-deep: #9b671f;
-      --serif: 'Playfair Display', Georgia, serif;
-      --sans: 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --shadow: 0 18px 45px rgba(77, 47, 20, 0.12);
-      --radius: 22px;
+      --gold-deep: #9B671F;
+      --muted: rgba(62, 38, 21, 0.68);
+      --line: rgba(62, 38, 21, 0.12);
+      --line-strong: rgba(62, 38, 21, 0.22);
+
+      /* Type */
+      --serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+      /* Structure */
+      --radius: 20px;
+      --radius-lg: 28px;
+      --shadow-sm: 0 6px 20px rgba(62, 38, 21, 0.06);
+      --shadow: 0 18px 44px rgba(62, 38, 21, 0.12);
+      --shadow-lg: 0 30px 70px rgba(62, 38, 21, 0.22);
+      --container: 1200px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    /* ============================================================
+       Base
+       ============================================================ */
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       margin: 0;
       font-family: var(--sans);
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.65), transparent 30%),
-        radial-gradient(circle at top right, rgba(198,153,62,0.06), transparent 24%),
-        var(--bg);
-      line-height: 1.5;
+      font-weight: 400;
+      color: var(--coffee);
+      background: var(--paper);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-
     img { max-width: 100%; display: block; }
     a { color: inherit; }
+    button { font: inherit; cursor: pointer; }
+    h1, h2, h3, h4 {
+      font-family: var(--serif);
+      font-weight: 500;
+      color: var(--espresso);
+      margin: 0;
+      letter-spacing: -0.015em;
+    }
+    p { margin: 0; }
+
     .container {
-      width: min(1180px, calc(100% - 36px));
-      margin: 0 auto;
+      width: min(var(--container), 100% - 40px);
+      margin-inline: auto;
     }
 
-    /* ===== HEADER / NAV ===== */
-    header {
+    /* Scroll reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ============================================================
+       Header / Nav
+       ============================================================ */
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      background: rgba(251,245,234,0.85);
-      border-bottom: 1px solid var(--line);
+      background: rgba(251, 245, 234, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease, background 0.3s ease;
     }
-
-    nav {
+    .site-header.scrolled {
+      border-bottom-color: var(--line);
+      background: rgba(251, 245, 234, 0.94);
+    }
+    .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
-      min-height: 82px;
+      min-height: 76px;
+      gap: 20px;
     }
-
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      min-width: 180px;
-    }
-
-    .brand img {
-      width: 56px;
-      height: 56px;
-      object-fit: contain;
-      border-radius: 50%;
-    }
-
-    .brand-name {
-      font-size: 1.28rem;
-      letter-spacing: 0.08em;
-      text-transform: lowercase;
-      font-weight: 500;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 26px;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.95rem;
-      color: rgba(62, 38, 21, 0.82);
-      transition: 0.25s ease;
-    }
-
-    .nav-links a:hover { color: var(--gold-deep); }
-
-    .btn-nav {
-      padding: 12px 18px;
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      color: white !important;
-      border-radius: 10px;
-      box-shadow: 0 10px 24px rgba(155,103,31,0.2);
-      font-weight: 600;
-    }
-
-    main section {
-      padding: 96px 0;
-      position: relative;
-    }
-
-    /* ===== HERO ===== */
-    .hero {
-      padding-top: 64px;
-      padding-bottom: 70px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr 0.98fr;
-      gap: 54px;
-      align-items: center;
-    }
-
-    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--gold-deep);
-      font-size: 0.78rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 700;
-      margin-bottom: 20px;
+      text-decoration: none;
+      color: var(--espresso);
+    }
+    .brand img { width: 42px; height: 42px; object-fit: contain; }
+    .brand-name {
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      color: var(--espresso);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: rgba(62, 38, 21, 0.78);
+      transition: color 0.2s ease;
+    }
+    .nav-links a:hover { color: var(--gold-deep); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 0;
+      transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--ivory);
+      box-shadow: 0 8px 24px rgba(44, 24, 16, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--coffee);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 28px rgba(44, 24, 16, 0.28);
+    }
+    .btn-gold {
+      background: var(--gold-deep);
+      color: var(--ivory);
+      box-shadow: 0 8px 24px rgba(155, 103, 31, 0.28);
+    }
+    .btn-gold:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
     }
 
+    .menu-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      padding: 8px 10px;
+      color: var(--espresso);
+    }
+
+    /* ============================================================
+       View 1: Hero
+       ============================================================ */
+    .hero {
+      background:
+        radial-gradient(circle at 85% 20%, rgba(198, 153, 62, 0.08), transparent 40%),
+        var(--cream);
+      padding: 72px 0 96px;
+      overflow: hidden;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--gold-deep);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
     .eyebrow::before {
       content: "";
       width: 28px;
       height: 1px;
       background: var(--gold);
     }
-
-    h1, h2, h3 {
-      font-family: var(--serif);
-      font-weight: 500;
-      margin: 0;
-      color: var(--espresso);
-    }
-
-    h1 {
-      font-size: clamp(3rem, 6vw, 5.6rem);
+    .hero h1 {
+      font-size: clamp(2.6rem, 5.4vw, 4.6rem);
       line-height: 1.02;
-      letter-spacing: -0.03em;
+      margin-bottom: 22px;
     }
-
-    .hero p.lead {
-      font-size: 1.08rem;
-      max-width: 640px;
+    .hero-lead {
+      font-size: 1.05rem;
       color: var(--muted);
-      margin: 28px 0 0;
-      font-weight: 300;
+      max-width: 480px;
+      margin-bottom: 32px;
+      font-weight: 400;
     }
 
-    .hero p.lead strong { color: var(--gold-deep); font-weight: 600; }
-
-    .manifesto {
-      margin-top: 26px;
-      padding-left: 18px;
-      border-left: 2px solid var(--gold);
-      font-family: var(--serif);
-      color: var(--gold-deep);
-      font-size: 1.5rem;
-      line-height: 1.34;
-      max-width: 650px;
+    .hero-form-wrap {
+      margin-top: 8px;
+      max-width: 480px;
+    }
+    .form-microcopy {
+      margin-top: 12px;
+      font-size: 0.82rem;
+      color: rgba(62, 38, 21, 0.55);
     }
 
-    .manifesto .kaapi { font-weight: 700; }
-
-    .actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 32px;
+    .hero-visual {
+      position: relative;
     }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 14px 22px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(135deg, var(--gold), var(--gold-deep));
-      box-shadow: 0 10px 24px rgba(155,103,31,0.2);
-    }
-
-    .btn-secondary {
-      border: 1px solid rgba(62, 38, 21, 0.28);
-      color: var(--text);
-      background: transparent;
-    }
-
-    .microcopy {
-      margin-top: 18px;
-      color: rgba(62,38,21,0.58);
-      font-size: 0.88rem;
-      font-weight: 300;
-    }
-
-    .hero-card {
-      background: rgba(255,250,242,0.82);
-      border: 1px solid rgba(198,153,62,0.18);
-      border-radius: 28px;
-      padding: 18px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card img {
-      border-radius: 18px;
+    .hero-visual img {
       width: 100%;
       height: auto;
-      object-fit: cover;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
     }
 
-    /* ===== BENEFITS STRIP ===== */
-    .benefits {
-      margin-top: 34px;
+    /* Product proof strip under hero */
+    .proof-strip {
+      margin-top: 72px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      border: 1px solid rgba(198,153,62,0.22);
-      background: rgba(255,250,242,0.92);
-      border-radius: 18px;
-      box-shadow: 0 12px 32px rgba(77, 47, 20, 0.06);
+      gap: 0;
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
       overflow: hidden;
+      box-shadow: var(--shadow-sm);
     }
-
-    .benefit {
-      padding: 26px 28px;
-      display: grid;
-      grid-template-columns: 54px 1fr;
-      gap: 16px;
+    .proof-item {
+      padding: 22px 28px;
+      display: flex;
       align-items: center;
-      border-right: 1px solid rgba(198,153,62,0.18);
+      gap: 14px;
+      border-right: 1px solid var(--line);
     }
-
-    .benefit:last-child { border-right: 0; }
-
-    .benefit-icon {
-      width: 54px;
-      height: 54px;
-      border: 1px solid rgba(198,153,62,0.4);
-      border-radius: 50%;
+    .proof-item:last-child { border-right: 0; }
+    .proof-item .icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
       display: grid;
       place-items: center;
       color: var(--gold-deep);
-      background: rgba(255,255,255,0.55);
     }
+    .proof-item .icon svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.6; }
+    .proof-item .label { font-weight: 600; color: var(--espresso); font-size: 0.98rem; }
+    .proof-item .sub { font-size: 0.82rem; color: var(--muted); }
 
-    .benefit-icon svg {
-      width: 24px;
-      height: 24px;
-      stroke: var(--gold-deep);
-      fill: none;
-      stroke-width: 1.5;
+    /* ============================================================
+       Section base
+       ============================================================ */
+    section { padding: 96px 0; position: relative; }
+    .section-head { max-width: 640px; margin-bottom: 56px; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    h2.section-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      margin-bottom: 18px;
     }
-
-    .benefit h3 { font-size: 1.15rem; }
-
-    .benefit p {
-      margin: 4px 0 0;
-      font-size: 0.9rem;
-      color: rgba(62,38,21,0.62);
-      font-weight: 300;
-    }
-
-    /* ===== SPLIT SECTIONS ===== */
-    .split {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 64px;
-      align-items: center;
-    }
-
-    .section-title {
-      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
-      line-height: 1.06;
-      letter-spacing: -0.02em;
-    }
-
-    .section-copy {
-      margin-top: 22px;
-      max-width: 620px;
-      font-size: 1.02rem;
+    .section-lead {
+      font-size: 1.05rem;
       color: var(--muted);
-      font-weight: 300;
+      max-width: 560px;
     }
+    .section-head.center .section-lead { margin-inline: auto; }
 
-    .media-card {
-      border-radius: var(--radius);
-      overflow: hidden;
-      box-shadow: var(--shadow);
+    /* ============================================================
+       View 2: Benefits
+       ============================================================ */
+    .benefits {
       background: var(--paper);
-      border: 1px solid rgba(62,38,21,0.08);
+      padding: 88px 0;
     }
-
-    .media-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
-
-    .landscape-img { aspect-ratio: 16 / 9; }
-
-    .origin {
-      background: linear-gradient(180deg, rgba(255,255,255,0.28), rgba(255,255,255,0.18)), var(--paper);
-      border-top: 1px solid rgba(62,38,21,0.06);
-      border-bottom: 1px solid rgba(62,38,21,0.06);
-    }
-
-    .origin-img { aspect-ratio: 4 / 3; }
-
-    /* ===== WAITLIST ===== */
-    .waitlist {
+    .benefit {
+      padding: 40px 32px;
       text-align: center;
-      background:
-        radial-gradient(circle at top center, rgba(198,153,62,0.08), transparent 25%),
-        var(--bg-2);
-      padding-top: 92px;
-      padding-bottom: 92px;
+      border-right: 1px solid var(--line);
     }
-
-    .waitlist h2 {
-      font-size: clamp(2.5rem, 4.7vw, 4.2rem);
-      line-height: 1.05;
+    .benefit:last-child { border-right: 0; }
+    .benefit-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 20px;
+      color: var(--gold-deep);
     }
-
-    .waitlist > .container > p {
-      margin: 16px auto 28px;
-      max-width: 620px;
+    .benefit-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.4; }
+    .benefit h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+      color: var(--espresso);
+    }
+    .benefit p {
+      font-size: 0.95rem;
       color: var(--muted);
-      font-weight: 300;
-    }
-
-    .waitlist .eyebrow { justify-content: center; }
-    .waitlist .eyebrow::after {
-      content: "";
-      width: 28px;
-      height: 1px;
-      background: var(--gold);
-    }
-
-    .form-wrap {
-      width: min(660px, 100%);
+      max-width: 260px;
       margin: 0 auto;
     }
 
-    /* ===== FOOTER ===== */
-    footer {
-      padding: 32px 0;
-      border-top: 1px solid var(--line);
-      background: #f1e5d3;
+    /* ============================================================
+       View 3: Why (Comparison)
+       ============================================================ */
+    .why {
+      background: var(--cream-2);
+      padding: 112px 0;
     }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .why-copy h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.05; }
+    .why-copy p { margin-top: 20px; color: var(--muted); font-size: 1.05rem; max-width: 460px; }
 
-    .footer-inner {
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: stretch;
+      gap: 20px;
+    }
+    .compare-card {
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-sm);
+    }
+    .compare-card.highlight {
+      background: var(--espresso);
+      color: var(--ivory);
+      border-color: var(--espresso);
+      box-shadow: var(--shadow);
+    }
+    .compare-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+    .compare-card.highlight .compare-title { color: rgba(255, 250, 242, 0.6); }
+    .compare-name {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      margin-bottom: 24px;
+      color: var(--espresso);
+    }
+    .compare-card.highlight .compare-name { color: var(--ivory); }
+    .compare-list { list-style: none; padding: 0; margin: 0; }
+    .compare-list li {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .social-icons {
-      display: flex;
       gap: 12px;
+      padding: 10px 0;
+      font-size: 0.98rem;
+      color: var(--coffee);
+      border-bottom: 1px dashed rgba(62, 38, 21, 0.12);
+    }
+    .compare-card.highlight .compare-list li {
+      color: rgba(255, 250, 242, 0.92);
+      border-bottom-color: rgba(255, 250, 242, 0.14);
+    }
+    .compare-list li:last-child { border-bottom: 0; }
+    .check {
+      width: 18px; height: 18px; flex-shrink: 0;
+      color: var(--gold);
+      display: inline-block;
+    }
+    .compare-card.highlight .check { color: var(--gold); }
+    .vs {
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      background: var(--gold-deep);
+      color: var(--ivory);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      align-self: center;
+      justify-self: center;
+      box-shadow: var(--shadow-sm);
     }
 
-    .social-icons a {
-      display: flex;
+    .why-tagline {
+      margin-top: 40px;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      color: var(--espresso);
+    }
+
+    /* ============================================================
+       View 4: How it works
+       ============================================================ */
+    .how {
+      background: var(--paper);
+      padding: 112px 0;
+    }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      counter-reset: step;
+    }
+    .step {
+      counter-increment: step;
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .step:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .step-img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+    .step-body {
+      padding: 24px 28px 28px;
+      position: relative;
+    }
+    .step-number {
+      position: absolute;
+      top: -20px;
+      left: 24px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-deep);
+      color: var(--ivory);
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .step h3 {
+      font-size: 1.35rem;
+      margin: 8px 0 6px;
+    }
+    .step p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ============================================================
+       View 5: Taste
+       ============================================================ */
+    .taste {
+      background: var(--espresso);
+      color: var(--ivory);
+      padding: 128px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .taste::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(198, 153, 62, 0.1), transparent 40%),
+        radial-gradient(circle at 10% 80%, rgba(155, 103, 31, 0.06), transparent 40%);
+      pointer-events: none;
+    }
+    .taste-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 72px;
       align-items: center;
-      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .taste h2 {
+      color: var(--ivory);
+      font-size: clamp(2rem, 4.4vw, 3.4rem);
+      line-height: 1.05;
+    }
+    .taste .eyebrow { color: var(--gold); }
+    .taste .eyebrow::before { background: var(--gold); }
+    .taste p {
+      color: rgba(255, 250, 242, 0.72);
+      font-size: 1.05rem;
+      margin-top: 22px;
+      max-width: 500px;
+    }
+    .taste-secondary {
+      margin-top: 20px !important;
+      font-style: italic;
+      font-family: var(--serif);
+      color: var(--gold) !important;
+      font-size: 1.1rem !important;
+    }
+    .taste-visual {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      aspect-ratio: 4 / 5;
+    }
+    .taste-visual img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* ============================================================
+       View 6: Origin
+       ============================================================ */
+    .origin {
+      padding: 0;
+      background: var(--paper);
+    }
+    .origin-hero {
+      position: relative;
+      min-height: 640px;
+      background-image: url('estate-sunset.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .origin-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(44, 24, 16, 0.05) 0%,
+        rgba(44, 24, 16, 0.35) 50%,
+        rgba(44, 24, 16, 0.82) 100%
+      );
+    }
+    .origin-content {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+      color: var(--ivory);
+      max-width: 620px;
+    }
+    .origin-content .eyebrow { color: var(--gold); }
+    .origin-content .eyebrow::before { background: var(--gold); }
+    .origin-content h2 {
+      color: var(--ivory);
+      font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+    .origin-sub {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--gold);
+      margin-bottom: 22px;
+    }
+    .origin-content p {
+      color: rgba(255, 250, 242, 0.85);
+      font-size: 1.02rem;
+      max-width: 500px;
+    }
+
+    /* ============================================================
+       View 7: Nutrition
+       ============================================================ */
+    .nutrition {
+      background: var(--cream);
+      padding: 112px 0;
+    }
+    .nutrition-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .stat {
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-value {
+      font-family: var(--serif);
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 500;
+      color: var(--espresso);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-label {
+      font-size: 0.82rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+    }
+    .stat.qual .stat-value {
+      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+      font-family: var(--serif);
+    }
+    .stat-sub {
+      margin-top: 10px;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .nutrition-note {
+      text-align: center;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto;
+      font-size: 0.98rem;
+    }
+
+    /* ============================================================
+       View 8: FAQ
+       ============================================================ */
+    .faq {
+      background: var(--paper);
+      padding: 112px 0;
+    }
+    .faq-list {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 22px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      font-family: var(--serif);
+      font-size: 1.15rem;
+      color: var(--espresso);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary:hover { color: var(--gold-deep); }
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      flex-shrink: 0;
+      color: var(--gold-deep);
+      transition: transform 0.3s ease;
+    }
+    .faq-item[open] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 0 24px;
+      color: var(--muted);
+      font-size: 0.98rem;
+      max-width: 640px;
+      line-height: 1.65;
+    }
+
+    /* ============================================================
+       View 9: Final CTA
+       ============================================================ */
+    .final-cta {
+      background: var(--espresso);
+      color: var(--ivory);
+      padding: 128px 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('cta-tumbler.jpg');
+      background-size: cover;
+      background-position: center right;
+      opacity: 0.28;
+    }
+    .final-cta::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(44, 24, 16, 0.98) 0%,
+        rgba(44, 24, 16, 0.85) 45%,
+        rgba(44, 24, 16, 0.4) 100%
+      );
+    }
+    .final-cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+    }
+    .final-cta h2 {
+      color: var(--ivory);
+      font-size: clamp(2.2rem, 4.6vw, 3.6rem);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    .final-cta p {
+      color: rgba(255, 250, 242, 0.78);
+      font-size: 1.08rem;
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .final-cta-form { max-width: 480px; }
+    .final-cta .eyebrow { color: var(--gold); }
+    .final-cta .eyebrow::before { background: var(--gold); }
+    .cta-benefits {
+      margin-top: 26px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      font-size: 0.88rem;
+      color: rgba(255, 250, 242, 0.7);
+    }
+    .cta-benefits span::before {
+      content: "•";
+      color: var(--gold);
+      margin-right: 10px;
+    }
+    .cta-benefits span:first-child::before { content: none; }
+
+    /* Style the EmailOctopus embedded form to match brand */
+    .eo-form-container,
+    div[class*="eo-form"] {
+      background: transparent !important;
+    }
+    .eo-form-container input[type="email"],
+    div[class*="eo-form"] input[type="email"] {
+      background: var(--ivory) !important;
+      border: 1px solid var(--line-strong) !important;
+      border-radius: 12px !important;
+      padding: 14px 16px !important;
+      font-family: var(--sans) !important;
+      font-size: 1rem !important;
+      color: var(--espresso) !important;
+    }
+    .final-cta .eo-form-container input[type="email"],
+    .final-cta div[class*="eo-form"] input[type="email"] {
+      background: rgba(255, 250, 242, 0.96) !important;
+    }
+    .eo-form-container button,
+    div[class*="eo-form"] button[type="submit"] {
+      background: var(--espresso) !important;
+      color: var(--ivory) !important;
+      border-radius: 12px !important;
+      padding: 14px 24px !important;
+      font-family: var(--sans) !important;
+      font-weight: 600 !important;
+      font-size: 0.98rem !important;
+      border: 0 !important;
+      cursor: pointer !important;
+      transition: background 0.2s ease !important;
+    }
+    .final-cta .eo-form-container button,
+    .final-cta div[class*="eo-form"] button[type="submit"] {
+      background: var(--gold-deep) !important;
+    }
+    .eo-form-container button:hover,
+    div[class*="eo-form"] button[type="submit"]:hover {
+      background: var(--coffee) !important;
+    }
+    .final-cta .eo-form-container button:hover,
+    .final-cta div[class*="eo-form"] button[type="submit"]:hover {
+      background: var(--gold) !important;
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    footer {
+      background: #EFE2D0;
+      padding: 56px 0 32px;
+      border-top: 1px solid var(--line);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr auto;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand {
+      max-width: 300px;
+    }
+    .footer-brand .brand { margin-bottom: 16px; }
+    .footer-statement {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--coffee);
+      line-height: 1.5;
+    }
+    .footer-col h4 {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 0.92rem;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover { color: var(--espresso); }
+
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social a {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 1px solid rgba(62,38,21,0.2);
-      transition: all 0.3s ease;
-      text-decoration: none;
+      border: 1px solid var(--line-strong);
+      display: grid;
+      place-items: center;
+      color: var(--coffee);
+      transition: all 0.2s ease;
     }
-
-    .social-icons a:hover {
+    .footer-social a:hover {
       border-color: var(--gold-deep);
-      background: rgba(198,153,62,0.12);
+      background: rgba(198, 153, 62, 0.1);
+      color: var(--gold-deep);
     }
+    .footer-social svg { width: 14px; height: 14px; fill: currentColor; }
 
-    .social-icons a svg {
-      width: 14px;
-      height: 14px;
-      fill: rgba(62,38,21,0.6);
-      transition: fill 0.3s ease;
-    }
-
-    .social-icons a:hover svg { fill: var(--gold-deep); }
-
-    .footer-links {
+    .footer-bottom {
+      border-top: 1px solid var(--line);
+      padding-top: 24px;
       display: flex;
-      gap: 24px;
+      justify-content: space-between;
       flex-wrap: wrap;
-      align-items: center;
+      gap: 12px;
+      font-size: 0.82rem;
+      color: var(--muted);
     }
 
-    .footer-links a {
-      text-decoration: none;
-      color: rgba(62,38,21,0.76);
-      font-size: 0.92rem;
-    }
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 980px) {
+      .nav-links a:not(.btn) { display: none; }
+      .menu-toggle { display: inline-grid; place-items: center; }
+      .nav-links.open a:not(.btn) { display: inline-block; }
+      .nav-links.open {
+        position: absolute;
+        top: 76px;
+        left: 20px;
+        right: 20px;
+        background: var(--ivory);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        box-shadow: var(--shadow);
+      }
 
-    .footer-links a:hover { color: var(--gold-deep); }
+      .hero-grid, .why-inner, .taste-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero { padding: 48px 0 72px; }
+      .proof-strip {
+        grid-template-columns: 1fr;
+      }
+      .proof-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .proof-item:last-child { border-bottom: 0; }
 
-    /* ===== SCROLL REVEAL ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 960px) {
-      .hero-grid,
-      .split { grid-template-columns: 1fr; gap: 34px; }
-      .benefits { grid-template-columns: 1fr; }
+      .benefits-grid { grid-template-columns: 1fr; }
       .benefit {
         border-right: 0;
-        border-bottom: 1px solid rgba(198,153,62,0.16);
+        border-bottom: 1px solid var(--line);
+        padding: 32px 20px;
       }
       .benefit:last-child { border-bottom: 0; }
-      .nav-links a:not(.btn-nav) { display: none; }
-      /* keep image above text in Origin on mobile order handled below */
-      .origin .split .media-card { order: -1; }
+
+      .compare {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .vs { transform: rotate(90deg); margin: 4px auto; }
+
+      .steps { grid-template-columns: 1fr; gap: 44px; }
+
+      .nutrition-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+      .footer-brand { grid-column: 1 / -1; }
+
+      section { padding: 72px 0; }
+      .taste, .final-cta, .origin-hero { padding: 88px 0; }
+      .origin-hero { min-height: 520px; }
     }
 
-    @media (max-width: 640px) {
-      .container { width: min(100% - 24px, 1180px); }
+    @media (max-width: 560px) {
+      .hero { padding: 32px 0 56px; }
+      .hero h1 { font-size: 2.4rem; }
       .brand-name { display: none; }
-      .hero { padding-top: 42px; }
-      h1 { font-size: 2.9rem; }
-      .manifesto { font-size: 1.2rem; }
-      main section { padding: 64px 0; }
-      .footer-inner {
-        flex-direction: column;
-        text-align: center;
-      }
+      .nutrition-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .stat { padding: 24px 16px; }
+      .cta-benefits { flex-direction: column; gap: 6px; }
+      .cta-benefits span::before { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; text-align: center; }
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      .reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      * { animation: none !important; transition: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container">
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a href="#top" class="brand" aria-label="Kaapi Labs home">
+        <img src="logo.png" alt="Kaapi Labs logo" />
+        <span class="brand-name">kaapi labs</span>
+      </a>
       <nav>
-        <a href="#top" class="brand" aria-label="Kaapi Labs home">
-          <img src="logo.png" alt="Kaapi Labs logo" />
-          <span class="brand-name">kaapi labs</span>
-        </a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#why">Why Kaapi</a>
-          <a href="#product">Product</a>
-          <a href="#waitlist">Waitlist</a>
-          <a href="#waitlist" class="btn-nav">Join Waitlist</a>
+        <div class="nav-links" id="navLinks">
+          <a href="#why">Why Protein Coffee</a>
+          <a href="#origin">Our Coffee</a>
+          <a href="#faq">FAQ</a>
+          <a href="#early-access" class="btn btn-primary">Get Early Access</a>
         </div>
       </nav>
+      <button class="menu-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     </div>
   </header>
 
-  <main id="top">
+  <main>
 
-    <!-- ===== HERO ===== -->
+    <!-- ============================================================
+         VIEW 1: HERO
+         ============================================================ -->
     <section class="hero">
       <div class="container">
         <div class="hero-grid">
           <div class="reveal">
             <div class="eyebrow">Protein coffee, reimagined</div>
             <h1>Your daily kaapi.<br>Now with protein.</h1>
-            <p class="lead">
-              Nearly <strong>3 in 4</strong> Indians may not get enough protein. Coffee is already part of the
-              morning ritual. What if one cup could do both?
+            <p class="hero-lead">
+              Real coffee from Karnataka, paired with high-quality protein for a smarter morning ritual. Made to taste like coffee, not a protein shake.
             </p>
-            <div class="manifesto">
-              We didn't create another protein shake.<br>
-              We reimagined your daily <span class="kaapi">kaapi</span>.
+            <div class="hero-form-wrap" id="early-access">
+              <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
+              <p class="form-microcopy">Early access, tasting opportunities and launch updates.</p>
             </div>
-            <div class="actions">
-              <a href="#waitlist" class="btn btn-primary">Join the waitlist</a>
-              <a href="#why" class="btn btn-secondary">Learn more</a>
-            </div>
-            <div class="microcopy">✉&nbsp; No spam. Just one email when we launch.</div>
           </div>
-
-          <div class="hero-card reveal" id="product">
-            <img src="product.jpg" alt="Kaapi Labs Protein Kaapi pouch beside a South Indian filter coffee tumbler and dabarah" />
+          <div class="hero-visual reveal">
+            <img src="hero-product.jpg" alt="Kaapi Labs Protein Coffee pouch beside a steaming stainless steel tumbler of freshly brewed coffee, with wooden scoop and beans on a rustic wooden board" />
           </div>
         </div>
 
-        <div class="benefits reveal">
-          <div class="benefit">
-            <div class="benefit-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M12 21c4-3 7-6.5 7-11a7 7 0 1 0-14 0c0 4.5 3 8 7 11z"/><path d="M12 21V10"/><path d="M12 13c1.5-.5 2.5-1.5 3-3"/><path d="M12 16c-1.5-.5-2.5-1.5-3-3"/></svg>
+        <div class="proof-strip reveal">
+          <div class="proof-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M7 3h10l-1 5H8L7 3z"/><path d="M6 8h12l-1 12a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L6 8z"/><path d="M10 13h4"/></svg>
             </div>
             <div>
-              <h3>Protein-rich</h3>
-              <p>A smarter morning cup.</p>
+              <div class="label"><span data-val="protein">~10g</span> Protein</div>
+              <div class="sub">Built into every cup</div>
             </div>
           </div>
-          <div class="benefit">
-            <div class="benefit-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M3 17l5-8 4 6 3-4 6 6"/><path d="M3 17h18"/></svg>
+          <div class="proof-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M4 11h13a4 4 0 0 1 0 8h-1"/><path d="M4 11v6a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4v-6H4z"/><path d="M8 4c0 1 .8 1.2.8 2.2M12 4c0 1 .8 1.2.8 2.2"/></svg>
             </div>
             <div>
-              <h3>Estate-origin coffee</h3>
-              <p>Sourced from the Western Ghats.</p>
+              <div class="label"><span data-val="caffeine">~60mg</span> Caffeine</div>
+              <div class="sub">A balanced coffee boost</div>
             </div>
           </div>
-          <div class="benefit">
-            <div class="benefit-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M4 10h12v6a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4v-6z"/><path d="M16 11h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M8 7c0-1 .8-1.2.8-2.2M12 7c0-1 .8-1.2.8-2.2"/></svg>
+          <div class="proof-item">
+            <div class="icon">
+              <svg viewBox="0 0 24 24"><path d="M3 18c2 -4 6 -4 9 -8s3 -6 9 -6c-1 6 -3 8 -8 11s-6 5 -10 3z"/><path d="M8 15c2 -3 5 -5 9 -8"/></svg>
             </div>
             <div>
-              <h3>Made for hot kaapi</h3>
-              <p>Also works beautifully cold.</p>
+              <div class="label">Real Karnataka Coffee</div>
+              <div class="sub">Sourced from the Western Ghats</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== WHY ===== -->
-    <section id="why">
-      <div class="container split">
-        <div class="reveal">
-          <div class="eyebrow">Why Kaapi Labs</div>
-          <h2 class="section-title">Not another shake.<br>A ritual, upgraded.</h2>
-          <p class="section-copy">
-            We're building a better way to add protein to your day — by starting with a ritual millions already love.
-            Kaapi Labs brings together estate-origin coffee, a familiar daily habit, and a more functional morning cup.
-          </p>
-        </div>
-        <div class="media-card landscape-img reveal">
-          <img src="estate-mist.jpg" alt="Misty coffee estate in the Western Ghats with coffee cherries in the foreground" loading="lazy" />
+
+    <!-- ============================================================
+         VIEW 2: BENEFITS
+         ============================================================ -->
+    <section class="benefits" aria-label="Key product benefits">
+      <div class="container">
+        <div class="benefits-grid reveal">
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 48 48"><path d="M18 6h12l-2 8H20l-2-8z"/><path d="M16 14h16l-2 24a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4l-2-24z"/><path d="M20 24h8"/></svg>
+            </div>
+            <h3><span data-val="protein">~10g</span> Protein</h3>
+            <p>A meaningful protein boost built into your morning coffee.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 48 48"><path d="M8 22h26a8 8 0 0 1 0 16h-2"/><path d="M8 22v12a8 8 0 0 0 8 8h10a8 8 0 0 0 8-8V22H8z"/><path d="M16 8c0 2 1.5 2.5 1.5 4.5M24 8c0 2 1.5 2.5 1.5 4.5M32 8c0 2 1.5 2.5 1.5 4.5"/></svg>
+            </div>
+            <h3><span data-val="caffeine">~60mg</span> Caffeine</h3>
+            <p>A balanced coffee boost for your everyday morning routine.</p>
+          </div>
+          <div class="benefit">
+            <div class="benefit-icon">
+              <svg viewBox="0 0 48 48"><ellipse cx="24" cy="24" rx="9" ry="16" transform="rotate(45 24 24)"/><path d="M16 32c4 -8 12 -12 20 -12"/></svg>
+            </div>
+            <h3>Real Karnataka Coffee</h3>
+            <p>Coffee sourced from Karnataka's Western Ghats.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- ===== ORIGIN ===== -->
-    <section class="origin" id="about">
-      <div class="container split">
-        <div class="media-card origin-img reveal">
-          <img src="estate-house.jpg" alt="Coffee plantation with a rustic estate house and pathway in golden morning light" loading="lazy" />
+
+    <!-- ============================================================
+         VIEW 3: WHY (comparison)
+         ============================================================ -->
+    <section class="why" id="why">
+      <div class="container">
+        <div class="why-inner">
+          <div class="why-copy reveal">
+            <div class="eyebrow">Why protein coffee</div>
+            <h2>Your morning,<br>upgraded.</h2>
+            <p>You already drink coffee every day. We added protein to make that ritual work harder for you.</p>
+          </div>
+
+          <div class="compare reveal">
+            <div class="compare-card">
+              <div class="compare-title">Your usual coffee</div>
+              <div class="compare-name">A regular cup</div>
+              <ul class="compare-list">
+                <li>
+                  <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Coffee
+                </li>
+                <li>
+                  <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Caffeine
+                </li>
+              </ul>
+            </div>
+
+            <div class="vs" aria-hidden="true">VS</div>
+
+            <div class="compare-card highlight">
+              <div class="compare-title">Kaapi Labs</div>
+              <div class="compare-name">Protein Coffee</div>
+              <ul class="compare-list">
+                <li>
+                  <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Real coffee
+                </li>
+                <li>
+                  <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  Caffeine
+                </li>
+                <li>
+                  <svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span data-val="protein">~10g</span> Protein
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-        <div class="reveal">
-          <div class="eyebrow">Origin</div>
-          <h2 class="section-title">Sakleshpur · Chikmagalur</h2>
-          <p class="section-copy">
-            Estate-origin coffee from the Western Ghats of Karnataka. Crafted for everyday drinkers who want more
-            from their morning cup. 100% vegetarian.
-          </p>
+
+        <p class="why-tagline reveal">"Don't add another habit. Upgrade the one you already have."</p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW 4: HOW IT WORKS
+         ============================================================ -->
+    <section class="how">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow" style="justify-content: center;">How it works</div>
+          <h2 class="section-title">Coffee first. Protein built in.</h2>
+        </div>
+
+        <div class="steps">
+          <article class="step reveal">
+            <img class="step-img" src="step-1-scoop.jpg" alt="Wooden bowl of finely ground Kaapi Labs coffee with a small wooden scoop" loading="lazy" />
+            <div class="step-body">
+              <div class="step-number">1</div>
+              <h3>Scoop</h3>
+              <p>Add one serving of Kaapi Labs.</p>
+            </div>
+          </article>
+          <article class="step reveal">
+            <img class="step-img" src="step-2-stir.jpg" alt="Hot water being poured into a stainless steel tumbler of freshly brewed protein coffee" loading="lazy" />
+            <div class="step-body">
+              <div class="step-number">2</div>
+              <h3>Stir</h3>
+              <p>Mix into your coffee and stir well.</p>
+            </div>
+          </article>
+          <article class="step reveal">
+            <img class="step-img" src="step-3-sip.jpg" alt="Warm ceramic mug of Kaapi Labs protein coffee with rich crema and rising steam" loading="lazy" />
+            <div class="step-body">
+              <div class="step-number">3</div>
+              <h3>Sip</h3>
+              <p>Enjoy your protein kaapi.</p>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- ===== WAITLIST ===== -->
-    <section class="waitlist" id="waitlist">
-      <div class="container reveal">
-        <div class="eyebrow">Coming soon</div>
-        <h2>Be first to taste Kaapi Labs.</h2>
-        <p>Join the waitlist for launch updates and early access.</p>
-        <div class="form-wrap">
-          <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
+
+    <!-- ============================================================
+         VIEW 5: TASTE
+         ============================================================ -->
+    <section class="taste">
+      <div class="container">
+        <div class="taste-inner">
+          <div class="reveal">
+            <div class="eyebrow">The taste promise</div>
+            <h2>Tastes like coffee.<br>Not a protein shake.</h2>
+            <p>We're building Kaapi Labs around the coffee experience first: rich, smooth and familiar, with protein built in without turning your morning cup into a shake.</p>
+            <p class="taste-secondary">Because adding protein should not mean compromising your kaapi.</p>
+          </div>
+          <div class="taste-visual reveal">
+            <img src="taste-tumbler.jpg" alt="Close up of a steaming stainless steel tumbler of freshly brewed protein coffee with rich crema on a dark wooden surface" loading="lazy" />
+          </div>
         </div>
-        <div class="microcopy">No spam. Just one email when we launch.</div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW 6: ORIGIN
+         ============================================================ -->
+    <section class="origin" id="origin" aria-label="Coffee origin">
+      <div class="origin-hero">
+        <div class="container">
+          <div class="origin-content reveal">
+            <div class="eyebrow">Origin</div>
+            <h2>Born in Karnataka's<br>coffee country.</h2>
+            <div class="origin-sub">Sakleshpur, Chikmagalur</div>
+            <p>Coffee sourced from estates in Karnataka's Western Ghats, selected for a rich, familiar everyday cup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW 7: NUTRITION
+         ============================================================ -->
+    <section class="nutrition">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow" style="justify-content: center;">Nutrition at a glance</div>
+          <h2 class="section-title">What's in your cup.</h2>
+        </div>
+
+        <div class="nutrition-grid reveal">
+          <div class="stat">
+            <div class="stat-value" data-val="protein">~10g</div>
+            <div class="stat-label">Protein</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-val="calories">~60</div>
+            <div class="stat-label">Calories</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value" data-val="caffeine">~60mg</div>
+            <div class="stat-label">Caffeine</div>
+          </div>
+          <div class="stat qual">
+            <div class="stat-value" data-val="vegetarian">Vegetarian</div>
+            <div class="stat-label">Everyday friendly</div>
+          </div>
+        </div>
+
+        <p class="nutrition-note reveal">Meaningful protein, moderate caffeine and approximately 60 calories in a cup designed for your everyday morning.</p>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW 8: FAQ
+         ============================================================ -->
+    <section class="faq" id="faq">
+      <div class="container">
+        <div class="section-head center reveal">
+          <div class="eyebrow" style="justify-content: center;">Questions</div>
+          <h2 class="section-title">Frequently asked.</h2>
+        </div>
+
+        <div class="faq-list reveal">
+          <details class="faq-item">
+            <summary>
+              What is protein coffee?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Kaapi Labs combines real coffee with high-quality dairy protein, giving you the coffee experience you already enjoy with added protein built into the cup.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Does it taste like a protein shake?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">That's exactly what we're trying to avoid. Kaapi Labs is being developed coffee-first, with the goal of keeping the cup rich, smooth and familiar rather than turning it into a traditional protein shake.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Can I drink Kaapi Labs hot?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Yes. Kaapi Labs is being developed for your everyday hot coffee ritual and can also be enjoyed cold.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How much protein is in one serving?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Our current product target is approximately <span data-val="protein-plain">10 g</span> of protein per serving.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How many calories are in one serving?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Our current product target is approximately <span data-val="calories-plain">60</span> calories per serving.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              How much caffeine is in one serving?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Kaapi Labs is currently designed to provide approximately <span data-val="caffeine-plain">60 mg</span> of caffeine per serving, giving you a balanced coffee boost for your morning routine.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              Is Kaapi Labs vegetarian?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">Yes, Kaapi Labs is vegetarian.</p>
+          </details>
+
+          <details class="faq-item">
+            <summary>
+              When is Kaapi Labs launching?
+              <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </summary>
+            <p class="faq-answer">We're preparing our first launch. Join the early-access list and we'll let you know first.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ============================================================
+         VIEW 9: FINAL CTA
+         ============================================================ -->
+    <section class="final-cta" id="early-access-bottom">
+      <div class="container">
+        <div class="final-cta-inner reveal">
+          <div class="eyebrow">Coming soon</div>
+          <h2>Be first to taste<br>Kaapi Labs.</h2>
+          <p>We're preparing our first batch. Join the early-access list and be among the first to know when it's ready.</p>
+          <div class="final-cta-form">
+            <script async src="https://eocampaign1.com/form/aa95f1ec-93aa-11f1-931a-d1444893d740.js" data-form="aa95f1ec-93aa-11f1-931a-d1444893d740"></script>
+          </div>
+          <div class="cta-benefits">
+            <span>Early access</span>
+            <span>First tasting opportunities</span>
+            <span>Launch updates</span>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
   <footer>
-    <div class="container footer-inner">
-      <a href="#top" class="brand" aria-label="Kaapi Labs home">
-        <img src="logo.png" alt="Kaapi Labs logo" />
-        <span class="brand-name">kaapi labs</span>
-      </a>
-      <div class="footer-links">
-        <div class="social-icons">
-          <a href="https://instagram.com/kaapilabs" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-          <a href="https://youtube.com/@kaapilabs" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
-          <a href="https://facebook.com/kaapilabs" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-          <a href="mailto:hello@kaapilabs.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#top" class="brand" aria-label="Kaapi Labs home">
+            <img src="logo.png" alt="Kaapi Labs logo" />
+            <span class="brand-name">kaapi labs</span>
+          </a>
+          <p class="footer-statement">
+            Real coffee.<br>
+            Real protein.<br>
+            Made for your daily kaapi.
+          </p>
         </div>
-        <a href="mailto:hello@kaapilabs.com">Contact</a>
-        <a href="#">Privacy</a>
+
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#why">Why Protein Coffee</a></li>
+            <li><a href="#origin">Our Coffee</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#early-access">Get Early Access</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="mailto:hello@kaapilabs.com">hello@kaapilabs.com</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <div class="footer-social">
+            <a href="https://instagram.com/kaapilabs" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://youtube.com/@kaapilabs" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="mailto:hello@kaapilabs.com" aria-label="Email"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Kaapi Labs. All rights reserved.</div>
+        <div>Made in India.</div>
       </div>
     </div>
   </footer>
 
+
+  <!-- ============================================================
+       SCRIPT
+       ============================================================ -->
   <script>
+    /* ------------------------------------------------------------
+       CENTRALIZED PRODUCT VALUES
+       Update these values in ONE place. Every occurrence on the
+       website will update automatically.
+       ------------------------------------------------------------ */
+    const PRODUCT = {
+      protein:         '~10g',
+      caffeine:        '~60mg',
+      calories:        '~60',
+      vegetarian:      'Vegetarian',
+      // Plain-language versions used inside FAQ sentences
+      'protein-plain':  '10 g',
+      'caffeine-plain': '60 mg',
+      'calories-plain': '60'
+    };
+
+    // Inject values wherever data-val is used
+    document.querySelectorAll('[data-val]').forEach(el => {
+      const key = el.getAttribute('data-val');
+      if (PRODUCT[key] !== undefined) el.textContent = PRODUCT[key];
+    });
+
+    /* ------------------------------------------------------------
+       Scroll reveal
+       ------------------------------------------------------------ */
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -636,9 +1443,33 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-
+    }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* ------------------------------------------------------------
+       Sticky header state change on scroll
+       ------------------------------------------------------------ */
+    const header = document.querySelector('.site-header');
+    const onScroll = () => {
+      if (window.scrollY > 20) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    /* ------------------------------------------------------------
+       Close mobile menu when a link is clicked
+       ------------------------------------------------------------ */
+    document.getElementById('navLinks').addEventListener('click', (e) => {
+      if (e.target.tagName === 'A') {
+        document.getElementById('navLinks').classList.remove('open');
+      }
+    });
+
+    /* ------------------------------------------------------------
+       Footer year
+       ------------------------------------------------------------ */
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
