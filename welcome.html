@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to Kaapi Labs</title>
+  <meta name="description" content="You're on the early-access list. Help us build the right cup for you." />
+  <meta name="robots" content="noindex, nofollow">
+
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#F5EBE0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&display=swap"></noscript>
+
+  <style>
+    :root {
+      --cream: #F5EBE0;
+      --cream-2: #EFE2D0;
+      --paper: #FBF5EA;
+      --ivory: #FFFAF2;
+      --espresso: #2C1810;
+      --coffee: #3E2615;
+      --gold: #C6993E;
+      --gold-deep: #9B671F;
+      --muted: rgba(62, 38, 21, 0.68);
+      --line: rgba(62, 38, 21, 0.14);
+      --line-strong: rgba(62, 38, 21, 0.22);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --radius: 20px;
+      --shadow-sm: 0 6px 20px rgba(62, 38, 21, 0.06);
+      --shadow: 0 20px 50px rgba(62, 38, 21, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--sans);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(198, 153, 62, 0.10), transparent 40%),
+        var(--paper);
+      color: var(--coffee);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+
+    header {
+      background: rgba(251, 245, 234, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+    .container {
+      width: min(720px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    header .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .brand img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    main {
+      flex: 1;
+      padding: 56px 0 80px;
+    }
+
+    /* -------- Success block -------- */
+    .success {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+    .success-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: var(--espresso);
+      color: var(--ivory);
+      border-radius: 999px;
+      font-size: 0.78rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    .success h1 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--espresso);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .success p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    /* -------- Survey card -------- */
+    .survey-card {
+      background: var(--ivory);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px 36px 32px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    /* Progress dots */
+    .progress {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .progress-dot {
+      width: 30px;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--line);
+      transition: background 0.35s ease;
+    }
+    .progress-dot.active { background: var(--gold-deep); }
+    .progress-dot.done { background: var(--gold); }
+
+    .step-label {
+      text-align: center;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* Question */
+    .question h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: clamp(1.5rem, 3.2vw, 2rem);
+      color: var(--espresso);
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+    .question .hint {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-bottom: 28px;
+    }
+
+    /* Chips */
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--paper);
+      border: 1.5px solid var(--line-strong);
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 0.94rem;
+      font-weight: 500;
+      color: var(--coffee);
+      cursor: pointer;
+      transition: all 0.18s ease;
+      user-select: none;
+    }
+    .chip:hover {
+      border-color: var(--gold-deep);
+      background: var(--ivory);
+      transform: translateY(-1px);
+    }
+    .chip.selected {
+      background: var(--espresso);
+      color: var(--ivory);
+      border-color: var(--espresso);
+    }
+    .chip.selected::before {
+      content: "✓";
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .chip:focus-visible {
+      outline: 2px solid var(--gold);
+      outline-offset: 3px;
+    }
+
+    /* Actions row */
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 18px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.94rem;
+      cursor: pointer;
+      border: 0;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--ivory);
+      box-shadow: 0 8px 22px rgba(44, 24, 16, 0.22);
+    }
+    .btn-primary:hover:not(:disabled) {
+      background: var(--coffee);
+      transform: translateY(-1px);
+    }
+    .btn-primary:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--muted);
+      padding: 10px 14px;
+      font-size: 0.9rem;
+    }
+    .btn-ghost:hover {
+      color: var(--espresso);
+    }
+    .btn-gold {
+      background: var(--gold-deep);
+      color: var(--ivory);
+      box-shadow: 0 8px 22px rgba(155, 103, 31, 0.25);
+    }
+    .btn-gold:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    /* Loading spinner */
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 250, 242, 0.4);
+      border-top-color: var(--ivory);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    .btn.is-loading .spinner { display: inline-block; }
+    .btn.is-loading .btn-label { opacity: 0.7; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Question transitions */
+    .question {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      display: none;
+    }
+    .question.active {
+      opacity: 1;
+      transform: none;
+      display: block;
+    }
+
+    /* Final thank-you state */
+    .thanks {
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .thanks-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--gold-deep);
+      color: var(--ivory);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 18px;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    .thanks h2 {
+      font-family: var(--serif);
+      font-weight: 500;
+      font-size: 1.6rem;
+      color: var(--espresso);
+      margin-bottom: 10px;
+    }
+    .thanks p {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .thanks-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Error state */
+    .error-note {
+      background: rgba(198, 65, 40, 0.08);
+      border: 1px solid rgba(198, 65, 40, 0.28);
+      color: #9B3B21;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.88rem;
+      text-align: center;
+      margin-top: 16px;
+      display: none;
+    }
+    .error-note.visible { display: block; }
+
+    /* Footer */
+    footer {
+      padding: 28px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--line);
+      background: var(--cream-2);
+    }
+    footer a { color: var(--gold-deep); text-decoration: none; }
+    footer a:hover { color: var(--espresso); }
+
+    /* Mobile */
+    @media (max-width: 560px) {
+      main { padding: 40px 0 60px; }
+      .survey-card { padding: 28px 20px 24px; border-radius: 16px; }
+      .success h1 { font-size: 1.9rem; }
+      .actions { flex-wrap: wrap; gap: 12px; }
+      .actions > * { flex: 1; }
+      .btn { width: 100%; }
+      .chip { padding: 11px 16px; font-size: 0.9rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .question { display: block; opacity: 1; transform: none; }
+      .question:not(.active) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <a href="/" class="brand" aria-label="Kaapi Labs home">
+        <picture>
+          <source srcset="logo.webp" type="image/webp">
+          <img src="logo.png" alt="Kaapi Labs" width="320" height="267" />
+        </picture>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Success confirmation -->
+      <div class="success">
+        <div class="success-badge">
+          <span>You're in ☕</span>
+        </div>
+        <h1>Welcome to Kaapi Labs.</h1>
+        <p>You're on the early-access list. We'll be in touch when the first batch is ready to taste.</p>
+      </div>
+
+      <!-- Survey card -->
+      <div class="survey-card" id="surveyCard">
+        <div class="progress" aria-hidden="true">
+          <div class="progress-dot active" data-dot="1"></div>
+          <div class="progress-dot" data-dot="2"></div>
+          <div class="progress-dot" data-dot="3"></div>
+        </div>
+        <div class="step-label" id="stepLabel">Step 1 of 3 &nbsp;·&nbsp; 30 seconds</div>
+
+        <!-- Question 1 (multi-select) -->
+        <div class="question active" data-question="1" data-key="MorningPriority" data-type="multi">
+          <h2>What matters most in your morning coffee?</h2>
+          <p class="hint">Pick as many as you like.</p>
+          <div class="chips" role="group">
+            <button type="button" class="chip" data-value="Great taste">Great taste</button>
+            <button type="button" class="chip" data-value="More protein">More protein</button>
+            <button type="button" class="chip" data-value="Low sugar">Low sugar</button>
+            <button type="button" class="chip" data-value="Convenience">Convenience</button>
+            <button type="button" class="chip" data-value="Energy">Energy</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" data-skip>Skip for now</button>
+            <button type="button" class="btn btn-primary" data-next disabled>
+              <span class="btn-label">Continue</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Question 2 (single-select) -->
+        <div class="question" data-question="2" data-key="CoffeeStyle" data-type="single">
+          <h2>How do you usually drink your coffee?</h2>
+          <p class="hint">Pick one.</p>
+          <div class="chips" role="radiogroup">
+            <button type="button" class="chip" data-value="Hot">Hot</button>
+            <button type="button" class="chip" data-value="Iced">Iced</button>
+            <button type="button" class="chip" data-value="Both">Both</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" data-skip>Skip for now</button>
+            <button type="button" class="btn btn-primary" data-next disabled>
+              <span class="btn-label">Continue</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Question 3 (single-select) -->
+        <div class="question" data-question="3" data-key="LaunchInterest" data-type="single">
+          <h2>When would you like to try Kaapi Labs?</h2>
+          <p class="hint">Pick one.</p>
+          <div class="chips" role="radiogroup">
+            <button type="button" class="chip" data-value="As soon as it launches">As soon as it launches</button>
+            <button type="button" class="chip" data-value="Within the first month">Within the first month</button>
+            <button type="button" class="chip" data-value="Whenever it's ready">Whenever it's ready</button>
+          </div>
+          <div class="actions">
+            <button type="button" class="btn btn-ghost" data-skip>Skip for now</button>
+            <button type="button" class="btn btn-primary" data-next disabled>
+              <span class="btn-label">Finish</span>
+              <span class="spinner"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="error-note" id="errorNote">Something went wrong sending your answers. No worries, your signup is safe. Try again in a moment.</div>
+      </div>
+
+      <!-- Thanks state (hidden initially) -->
+      <div class="survey-card thanks" id="thanksCard" style="display:none;">
+        <div class="thanks-icon">✓</div>
+        <h2 id="thanksTitle">Thanks. That helps.</h2>
+        <p id="thanksMsg">We'll use what you shared to build the right cup for you.</p>
+        <div class="thanks-links">
+          <a href="/" class="btn btn-primary">Back to Kaapi Labs</a>
+          <a href="https://instagram.com/kaapilabs" target="_blank" rel="noopener" class="btn btn-ghost">Follow on Instagram</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 Kaapi Labs &nbsp;·&nbsp; <a href="privacy.html">Privacy</a> &nbsp;·&nbsp; <a href="terms.html">Terms</a>
+    </div>
+  </footer>
+
+  <script>
+    /* ============================================================
+       CONFIG
+       ============================================================ */
+    const GOOGLE_SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyY05hSxfGvhvptNoy77QR2q2xnBrKor4EaQkfWva9uYfnzRtC-dCdw98wTtFYxzr_vrg/exec';
+
+    /* ============================================================
+       STATE
+       ============================================================ */
+    const answers = {
+      MorningPriority: [],
+      CoffeeStyle: '',
+      LaunchInterest: ''
+    };
+    let currentStep = 1;
+    const totalSteps = 3;
+
+    /* ============================================================
+       DOM
+       ============================================================ */
+    const questions   = document.querySelectorAll('.question');
+    const progressDots = document.querySelectorAll('.progress-dot');
+    const stepLabel   = document.getElementById('stepLabel');
+    const surveyCard  = document.getElementById('surveyCard');
+    const thanksCard  = document.getElementById('thanksCard');
+    const thanksTitle = document.getElementById('thanksTitle');
+    const thanksMsg   = document.getElementById('thanksMsg');
+    const errorNote   = document.getElementById('errorNote');
+
+    /* ============================================================
+       CHIP TOGGLE + NEXT BUTTON STATE
+       ============================================================ */
+    questions.forEach(q => {
+      const type      = q.dataset.type;      // 'single' or 'multi'
+      const key       = q.dataset.key;       // e.g. MorningPriority
+      const chips     = q.querySelectorAll('.chip');
+      const nextBtn   = q.querySelector('[data-next]');
+      const skipBtn   = q.querySelector('[data-skip]');
+
+      chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+          const value = chip.dataset.value;
+          if (type === 'single') {
+            chips.forEach(c => c.classList.remove('selected'));
+            chip.classList.add('selected');
+            answers[key] = value;
+          } else {
+            chip.classList.toggle('selected');
+            if (chip.classList.contains('selected')) {
+              if (!answers[key].includes(value)) answers[key].push(value);
+            } else {
+              answers[key] = answers[key].filter(v => v !== value);
+            }
+          }
+          // Enable Continue when at least one is picked
+          const hasAnswer = type === 'single'
+            ? !!answers[key]
+            : answers[key].length > 0;
+          nextBtn.disabled = !hasAnswer;
+        });
+      });
+
+      nextBtn.addEventListener('click', () => advance(false));
+      skipBtn.addEventListener('click', () => advance(true));
+    });
+
+    /* ============================================================
+       PROGRESS + STEP TRANSITIONS
+       ============================================================ */
+    function showStep(n) {
+      questions.forEach(q => {
+        q.classList.toggle('active', parseInt(q.dataset.question, 10) === n);
+      });
+      progressDots.forEach(d => {
+        const idx = parseInt(d.dataset.dot, 10);
+        d.classList.remove('active', 'done');
+        if (idx < n) d.classList.add('done');
+        else if (idx === n) d.classList.add('active');
+      });
+      const secondsLeft = { 1: '30 seconds', 2: '20 seconds', 3: 'almost done' }[n];
+      stepLabel.innerHTML = `Step ${n} of ${totalSteps} &nbsp;·&nbsp; ${secondsLeft}`;
+    }
+
+    function advance(skipped) {
+      if (currentStep < totalSteps) {
+        currentStep += 1;
+        showStep(currentStep);
+        surveyCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // Final step: submit if any answers, else just show thanks
+        finish(skipped);
+      }
+    }
+
+    /* ============================================================
+       SUBMIT
+       ============================================================ */
+    async function finish(skippedFinalOnly) {
+      const finalBtn = document.querySelector('.question.active [data-next]');
+      if (finalBtn) finalBtn.classList.add('is-loading');
+      errorNote.classList.remove('visible');
+
+      // If every answer is empty, treat as fully skipped: no submission
+      const anyAnswer =
+        (answers.MorningPriority && answers.MorningPriority.length) ||
+        answers.CoffeeStyle ||
+        answers.LaunchInterest;
+
+      if (!anyAnswer) {
+        showThanks(false);
+        return;
+      }
+
+      const payload = {
+        MorningPriority: (answers.MorningPriority || []).join(', '),
+        CoffeeStyle:     answers.CoffeeStyle || '',
+        LaunchInterest:  answers.LaunchInterest || ''
+      };
+
+      try {
+        // Google Apps Script accepts POST but does not send CORS headers back.
+        // Using no-cors + text/plain avoids a preflight and the request goes through.
+        // We can't read the response body in no-cors mode, so we assume success
+        // unless the fetch itself throws (network error).
+        await fetch(GOOGLE_SHEET_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        showThanks(true);
+      } catch (err) {
+        console.error('Survey submit failed', err);
+        if (finalBtn) finalBtn.classList.remove('is-loading');
+        errorNote.classList.add('visible');
+      }
+    }
+
+    function showThanks(submitted) {
+      surveyCard.style.display = 'none';
+      thanksCard.style.display = 'block';
+      if (!submitted) {
+        thanksTitle.textContent = "No worries.";
+        thanksMsg.textContent = "You're on the early-access list. We'll be in touch when Kaapi Labs is ready.";
+      }
+      thanksCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    /* ============================================================
+       INIT
+       ============================================================ */
+    showStep(1);
+  </script>
+</body>
+</html>
